@@ -1,9 +1,10 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
 from nltk.tokenize import word_tokenize
 from nltk.stem import LancasterStemmer
+from geopy.geocoders import Nominatim
 
 #matrix functions
 
@@ -80,6 +81,15 @@ def choose(listinput):
 def wait(ms):
     time.sleep(ms/1000)
     
+def current_hour():
+    return time.localtime()[3]
+
+def current_minute():
+    return time.localtime()[4]
+
+def current_second():
+    return time.localtime()[5]
+    
 def tokenize(string):
     tokens = word_tokenize(string)
     return tokens
@@ -120,6 +130,17 @@ def find_sum_of_evens(number): #adds all even numbers below it above 0 (includin
     else:
         return find_sum_of_evens(number - 1)
     
+def ask(url):
+    return requests.get(url)
+
+def ask_json(url):
+    return requests.get(url).json()
+
+def locate():
+    response = requests.get('https://ipinfo.io')
+    coords = response.text.strip()
+    return coords
+
 #classes
 
 class MatrixManager():
@@ -191,16 +212,51 @@ class Manage():
         if input("Are you sure ('y') ?:\n") == "y":
             os.remove(self.file)
 
+
 #unfinished chatbot
+            
 class Chatbot:
     def __init__(self):
         pass
     def build(self):
-        pass
+        self.greetings = ["hi","hello","meet","morn","afternoon","hey"]
+        self.farewells = ["bye","see","lat","goodby"]
+        self.time = ["tim","now","clock"]
+        self.help = ["assist","help","nee"]
+        self.location = ["wher","loc"]
     def run(self):
         user_input = ""
+        score = [0,0,0,0,0]
         while user_input != "exit":
             user_input = input("You:\t")
+            score = [0,0,0,0,0]
+            tokens = tokenize(user_input)
+            stemmed_words = []
+            for token in tokens:
+                stemmed_words.append((stem(token)))
+            print(stemmed_words)
+            for word in stemmed_words:
+                if word in self.greetings:
+                    score[0] +=1
+                elif word in self.farewells:
+                    score[1] +=1
+                elif word in self.time:
+                    score[2] +=3
+                elif word in self.help:
+                    score[3] +=2
+                elif word in self.location:
+                    score[4] +=3
+            if score[0] > score[1] and score[0] > score[2] and score[0] > score[3] and score[0] > score[4]:
+                print("Hello")
+            elif score[1] > score[0] and score[1] > score[2] and score[1] > score[3] and score[1] > score[4]:
+                print("Bye then")
+            elif score[2] > score[0] and score[2] > score[1] and score[2] > score[3]and score[2] > score[4]:
+                print(f"{current_hour()}:{current_minute()}:{current_second()}")
+            elif score[3] > score[0] and score[3] > score[1] and score[3] > score[2] and score[3] > score[4]:
+                print("How may I assist you?")
+            elif score[4] > score[0] and score[4] > score[1] and score[4] > score[2] and score[4] > score[3]:
+                print(f"Locational data:\n{locate()}")
+        
         
 #turtlel
       
