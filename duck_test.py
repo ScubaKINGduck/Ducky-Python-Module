@@ -91,7 +91,8 @@ Test1.results()
 
 #turtle function tests
 Test2 = Tester()
-Test2.test("ducky.splat(t,5)","Run custom splat function")
+Test2.test("ducky.splat(t,4)","Run custom splat function")
+Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("t.clear()","Clear the canvas")
 Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("ducky.pizza(t,size=1,x=0,y=0)","Run custom pizza function")
