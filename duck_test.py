@@ -51,7 +51,7 @@ class Tester:
             print("\033[38;5;208mCompleted 70% or more successfully:\n")
         else:
             print("\033[91m------------------------------------------------------------")
-            print("\033[91mCompleted less than 60% successfully:\n")
+            print(f"\033[91mCompleted {percent}% successfully:\n")
         if self.success:
             print(f"\033[32mSuccessful tests:\n")
         for s in self.success:
@@ -85,7 +85,6 @@ Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
 Test1.test("for i in duck.colours:\n\tduck.colour(i)\n\tt.penup()\n\tt.goto(0,0)\n\tt.pendown()\n\tt.forward(100)","Test pen and colours")
 Test1.test("t.clear()","Clear the canvas")
 Test1.test("t.penup()\nt.goto(0,0)\nduck.colour('black')\nt.pendown()","Reset the turtle")
-Test1.test("ducky.done()","Finish")
 Test1.results()
 input() #pause
 #matrix manager test
@@ -102,4 +101,9 @@ Test2.test("Matrix.x_pos+=1","Reset the line's position")
 Test2.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
 Test2.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
 Test2.results()
+input()
+#turtle function tests
+Test3 = Tester()
+Test3.test("ducky.splat(t,5)","Run custom splat function")
+Test3.results()
 print_average()

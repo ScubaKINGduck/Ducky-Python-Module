@@ -345,18 +345,17 @@ def star(t_name,colour="yellow",size=100,width=10):
 def splat(t,num):
     t.speed(0)
     x,y = 0,0
-    for i in range(num*10):
+    for i in range(num):
         for ii in range(num):
             star(t,colour="yellow",size=100,width=50)
-            t.forward(duckint(10,50))
+            t.forward(duckint(30,60))
             t.right(360/num+duckint(1,10))
-        t.forward(num*ii)
+        t.forward(num*i)
         for iii in range(num):
             star(t,colour="yellow",size=100,width=50)
             t.forward(num*10)
             t.right(360/num+duckint(1,10))
-        t.right(3**iii*duckint(1,10))
-    done()
+        t.right(3**i*duckint(1,10))
     
 def pizza():
     t = Turtle()
