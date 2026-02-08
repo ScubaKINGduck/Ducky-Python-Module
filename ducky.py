@@ -219,7 +219,7 @@ class Manage:
 
 
 class TurtleManager:
-    def __init__(self,turtle,colours=list):
+    def __init__(self,turtle,colours=None):
         self.turtle = turtle
         self.x = self.turtle.xcor()
         self.y = self.turtle.xcor()
