@@ -222,7 +222,7 @@ class TurtleManager:
         self.x = self.turtle.xcor()
         self.y = self.turtle.xcor()
         self.width = self.turtle.width()
-        self.pen_down = self.t.isdown()
+        self.pen_down = self.turtle.isdown()
         self.rotation = self.turtle.heading()
         self.colours = colours
         if len(self.colours) == 0:
