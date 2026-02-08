@@ -345,7 +345,6 @@ def star(t_name,colour="yellow",size=100,width=10):
 
 def splat(t,num):
     t.speed(0)
-    x,y = 0,0
     for i in range(num):
         for ii in range(num):
             star(t,colour="yellow",size=100,width=50)
@@ -358,20 +357,19 @@ def splat(t,num):
             t.right(360/num+duckint(1,10))
         t.right(3**i*duckint(1,10))
     
-def pizza():
-    t = Turtle()
+def pizza(t=Turtle()):
     x = int(input("X:\n"))
     y = int(input("Y:\n"))
     t.penup()
     t.goto(x,y)
-    size = float(input("Size:\n")) * 10
+    size = int(input("Size:\n")) * 10
     t.speed(0)
     t.colour("wheat")
-    t.dot(350*size/10)
+    t.dot(35*size)
     t.colour("red")
-    t.dot(300*size/10)
+    t.dot(30*size)
     t.colour("yellow")
-    t.dot(280*size/10)
+    t.dot(28*size)
     t.penup()
     t.colour("red")
     for i in range(duckint(10,15)):
@@ -382,11 +380,10 @@ def pizza():
     t.pendown()
     t.width(8)
     for i in range(8):
-        t.forward(175*size/10)
+        t.forward(18*size)
         t.right(180)
-        t.forward(175*size/10)
+        t.forward(18*size)
         t.right(45)
-    done()
 
 # turtle.py: a Tkinter based turtle graphics module for Python
 # Version 1.1b - 4. 5. 2009

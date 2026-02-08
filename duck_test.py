@@ -17,7 +17,6 @@ class Tester:
         self.errors = []
         self.success = []
         Tester._instances.append(self)
-
     def test(self,code, name="Unnamed"):
         try:
             exec(code, globals())
@@ -79,31 +78,41 @@ def print_average():
 
 #basic turtle and Turtle Manager
 Test1 = Tester()
+Test1.test("import ducky","Import ducky")
 Test1.test("t=ducky.Turtle()","Create turtle")
 Test1.test("t.speed(0)","Set turtle speed")
 Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
 Test1.test("for i in duck.colours:\n\tduck.colour(i)\n\tt.penup()\n\tt.goto(0,0)\n\tt.pendown()\n\tt.forward(100)","Test pen and colours")
 Test1.test("t.clear()","Clear the canvas")
-Test1.test("t.penup()\nt.goto(0,0)\nduck.colour('black')\nt.pendown()","Reset the turtle")
+Test1.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test1.results()
 input() #pause
-#matrix manager test
+#turtle function tests
 Test2 = Tester()
-Test2.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
-Test2.test("line = [[0,1,0],[0,1,0],[0,1,0]]","Make a 3 x 3 matrix with a line in the middle")
-Test2.test("Matrix = ducky.MatrixManager(background,2,line)","Make an object of the Matrix Manager class")
-Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
-Test2.test("Matrix.x_pos+=1","Move the line horizontally in the matrix")
-Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
-Test2.test("Matrix.x_pos-=2","Move the line horizontally in the matrix")
-Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
-Test2.test("Matrix.x_pos+=1","Reset the line's position")
-Test2.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
-Test2.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
+Test2.test("ducky.splat(t,5)","Run custom splat function")
+Test2.test("t.clear()","Clear the canvas")
+Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
+Test2.test("ducky.pizza(t)","Run custom pizza function")
+Test2.test("t.clear()","Clear the canvas")
+Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
+Test2.test("ducky.star(t)","Run custom star function")
 Test2.results()
 input()
-#turtle function tests
+#matrix manager test
 Test3 = Tester()
-Test3.test("ducky.splat(t,5)","Run custom splat function")
+Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
+Test3.test("line = [[0,1,0],[0,1,0],[0,1,0]]","Make a 3 x 3 matrix with a line in the middle")
+Test3.test("Matrix = ducky.MatrixManager(background,2,line)","Make an object of the Matrix Manager class")
+Test3.test("Matrix.loop_func()","Run the main loop function of the matrix")
+Test3.test("Matrix.x_pos+=1","Move the line horizontally in the matrix")
+Test3.test("Matrix.loop_func()","Run the main loop function of the matrix")
+Test3.test("Matrix.x_pos-=2","Move the line horizontally in the matrix")
+Test3.test("Matrix.loop_func()","Run the main loop function of the matrix")
+Test3.test("Matrix.x_pos+=1","Reset the line's position")
+Test3.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
+Test3.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
 Test3.results()
+
+
 print_average()
+print("\033[0m")
