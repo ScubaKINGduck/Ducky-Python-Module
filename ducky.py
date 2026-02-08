@@ -2,6 +2,7 @@ import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, request
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
+from turtle import Turtle
 from nltk.tokenize import word_tokenize
 from nltk.stem import LancasterStemmer
 
