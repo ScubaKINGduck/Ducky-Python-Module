@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="Fixed the tests and added an overall average">
+    <list default="true" id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="Fixed the tests and some turtle functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/duck_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/duck_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ducky.py" beforeDir="false" afterPath="$PROJECT_DIR$/ducky.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,7 +288,55 @@
       <option name="project" value="LOCAL" />
       <updated>1770570157464</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Fixed the tests and some turtle functions">
+      <option name="closed" value="true" />
+      <created>1770572884365</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1770572884365</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Made x and y inputs skippable">
+      <option name="closed" value="true" />
+      <created>1770573139098</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573139099</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Made size input skippable">
+      <option name="closed" value="true" />
+      <created>1770573149512</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573149512</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added new lines for better readability">
+      <option name="closed" value="true" />
+      <created>1770573174746</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573174746</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Ran ducky.done() after all turtle tests were finished">
+      <option name="closed" value="true" />
+      <created>1770573193777</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573193777</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fixed accidental turtle windows opening">
+      <option name="closed" value="true" />
+      <created>1770573439023</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573439023</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,7 +351,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test file" />
     <MESSAGE value="TurtleManager class added" />
     <MESSAGE value="Fixed incorrect reference to turtle instance in the Turtle Manager class" />
     <MESSAGE value="New line" />
@@ -324,6 +370,12 @@
     <MESSAGE value="Fixed the matrix tests" />
     <MESSAGE value="Fixed the tests and added an overall average" />
     <MESSAGE value="Added import" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added import" />
+    <MESSAGE value="Fixed the tests and some turtle functions" />
+    <MESSAGE value="Made x and y inputs skippable" />
+    <MESSAGE value="Made size input skippable" />
+    <MESSAGE value="Added new lines for better readability" />
+    <MESSAGE value="Ran ducky.done() after all turtle tests were finished" />
+    <MESSAGE value="Fixed accidental turtle windows opening" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed accidental turtle windows opening" />
   </component>
 </project>
