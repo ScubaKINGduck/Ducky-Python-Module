@@ -79,7 +79,7 @@ def print_average():
 #basic turtle and Turtle Manager
 Test1 = Tester()
 Test1.test("import ducky","Import ducky")
-Test1.test("t=ducky.Turtle()","Create turtle")
+t=ducky.Turtle()
 Test1.test("t.speed(0)","Set turtle speed")
 Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
 Test1.test("for i in duck.colours:\n\tduck.colour(i)\n\tt.penup()\n\tt.goto(0,0)\n\tt.pendown()\n\tt.forward(100)","Test pen and colours")
