@@ -227,7 +227,7 @@ class TurtleManager:
         self.pen_down = self.turtle.isdown()
         self.rotation = self.turtle.heading()
         self.colours = colours
-        if len(self.colours) == 0:
+        if not self.colours:
             self.colours = ["red","green","blue","yellow","white","black","green","purple"]
     def colour(self,index=None,name=None):
         if index:
