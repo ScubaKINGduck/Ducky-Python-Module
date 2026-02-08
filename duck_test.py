@@ -1,8 +1,22 @@
 import ducky
 class Tester:
+    _instances = []
+    @classmethod
+    def average(cls):
+        total_success = 0
+        total_errors = 0
+        total_tests = 0
+        for instance in cls._instances:
+            total_success += len(instance.success)
+            total_errors += len(instance.errors)
+        total_tests = total_success + total_errors
+        if total_tests == 0:
+            return 0
+        return (total_success / total_tests) * 100
     def __init__(self):
         self.errors = []
         self.success = []
+        Tester._instances.append(self)
 
     def test(self,code, name="Unnamed"):
         try:
@@ -48,6 +62,21 @@ class Tester:
             print(f"\033[31m{e}")
 
 
+def print_average():
+    avg = Tester.average()
+    if avg == 100:
+        color = "\033[92m"
+    elif avg >= 90:
+        color = "\033[32m"
+    elif avg >= 80:
+        color = "\033[33m"
+    elif avg >= 70:
+        color = "\033[38;5;208m"
+    else:
+        color = "\033[91m"
+    print(f"{color}------------------------------------------------------------")
+    print(f"{color}Average success across all Tester instances: {avg:.2f}%\033[0m")
+
 #basic turtle and Turtle Manager
 Test1 = Tester()
 Test1.test("t=ducky.Turtle()","Create turtle")
@@ -68,8 +97,9 @@ Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
 Test2.test("Matrix.x_pos+=1","Move the line horizontally in the matrix")
 Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
 Test2.test("Matrix.x_pos-=2","Move the line horizontally in the matrix")
-Test2.test("Matrix.loop_func","Run the main loop function of the matrix")
+Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
 Test2.test("Matrix.x_pos+=1","Reset the line's position")
 Test2.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
 Test2.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
 Test2.results()
+print_average()
