@@ -142,7 +142,7 @@ def locate():
 
 #classes
 
-class MatrixManager():
+class MatrixManager:
     def __init__(self,background,fps,mat=None,wrapping=False,sprite_condition=1):
         self.mat = mat
         self.fps = fps
