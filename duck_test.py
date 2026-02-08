@@ -102,7 +102,7 @@ ducky.wait(500)
 Test2.test("ducky.bye()","Close turtle")
 Test2.results()
 
-
+ducky.wait(200)
 #matrix manager test
 Test3 = Tester()
 Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
@@ -118,6 +118,13 @@ Test3.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
 Test3.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
 Test3.results()
 
+ducky.wait(200)
+Test4 = Tester()
+inputs = ["hello there","bye"]
+outputs = ["Hello","Bye then"]
+Test4.test("chat=ducky.Chatbot(inputs,outputs)","Initialise a chatbot object")
+Test4.test("5/(chat.reply_test())","Test outputs")
+Test4.results()
 
 print_average()
 print("\033[0m")

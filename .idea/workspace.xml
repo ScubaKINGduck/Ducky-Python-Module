@@ -44,20 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python tests.Doctests in ducky.executor&quot;: &quot;Run&quot;,
-    &quot;Python.duck_test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/scuba/PycharmProjects/Ducky-Python-Module/ducky.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Doctests in ducky.executor": "Run",
+    "Python.duck_test.executor": "Run",
+    "Python.temp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "two.files.diff.last.used.file": "C:/Users/scuba/PycharmProjects/Ducky-Python-Module/ducky.py"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -417,7 +418,39 @@
       <option name="project" value="LOCAL" />
       <updated>1770574305807</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Added a wait to avoid star cutoff">
+      <option name="closed" value="true" />
+      <created>1770574442493</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574442493</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Switched clear and home">
+      <option name="closed" value="true" />
+      <created>1770574467511</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574467511</updated>
+    </task>
+    <task id="LOCAL-00046" summary="switched clear and home">
+      <option name="closed" value="true" />
+      <created>1770574476340</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574476340</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Fixed small bugs">
+      <option name="closed" value="true" />
+      <created>1770574486405</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574486405</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -432,9 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Exception printing in the calc function" />
-    <MESSAGE value="Defined self.x and self.y in the Matrix Manager constructor" />
-    <MESSAGE value="Fixed previous commit" />
     <MESSAGE value="Simplified boolean checks" />
     <MESSAGE value="Removed redundant brackets" />
     <MESSAGE value="Changed colours default value from a list to None in the Turtle&#10;Manager constructor" />
@@ -452,11 +482,14 @@
     <MESSAGE value="Ran ducky.done() after all turtle tests were finished" />
     <MESSAGE value="Fixed accidental turtle windows opening" />
     <MESSAGE value="Replaced if not with if is None" />
-    <MESSAGE value="Fixed small bugs" />
     <MESSAGE value="Removed inputs from inside the function they can just be used in parameters" />
     <MESSAGE value="Removed the turtle initialisation from the test" />
     <MESSAGE value="Switched t.home and t.clear" />
     <MESSAGE value="Switched t.home and t.clear and added a wait" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switched t.home and t.clear and added a wait" />
+    <MESSAGE value="Added a wait to avoid star cutoff" />
+    <MESSAGE value="Switched clear and home" />
+    <MESSAGE value="switched clear and home" />
+    <MESSAGE value="Fixed small bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed small bugs" />
   </component>
 </project>

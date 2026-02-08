@@ -264,8 +264,11 @@ class TurtleManager:
 #unfinished chatbot
             
 class Chatbot:
-    def __init__(self):
-        pass
+    def __init__(self,testing_input=None,testing_output=None):
+        self.testing_input = testing_input
+        self.testing_output = testing_output
+        self.build()
+
     def build(self):
         self.greetings = ["hi","hello","meet","morn","afternoon","hey"]
         self.farewells = ["bye","see","lat","goodby"]
@@ -274,39 +277,49 @@ class Chatbot:
         self.location = ["wher","loc"]
 
     def run(self):
-        user_input = ""
+        self.user_input = ""
         score = [0,0,0,0,0]
-        while user_input != "exit":
-            user_input = input("You:\t")
-            score = [0,0,0,0,0]
-            tokens = tokenize(user_input)
-            stemmed_words = []
-            for token in tokens:
-                stemmed_words.append((stem(token)))
-            print(stemmed_words)
-            for word in stemmed_words:
-                if word in self.greetings:
-                    score[0] +=1
-                elif word in self.farewells:
-                    score[1] +=1
-                elif word in self.time:
-                    score[2] +=3
-                elif word in self.help:
-                    score[3] +=2
-                elif word in self.location:
-                    score[4] +=3
-            if score[0] > score[1] and score[0] > score[2] and score[0] > score[3] and score[0] > score[4]:
-                print("Hello")
-            elif score[1] > score[0] and score[1] > score[2] and score[1] > score[3] and score[1] > score[4]:
-                print("Bye then")
-            elif score[2] > score[0] and score[2] > score[1] and score[2] > score[3]and score[2] > score[4]:
-                print(f"{current_hour()}:{current_minute()}:{current_second()}")
-            elif score[3] > score[0] and score[3] > score[1] and score[3] > score[2] and score[3] > score[4]:
-                print("How may I assist you?")
-            elif score[4] > score[0] and score[4] > score[1] and score[4] > score[2] and score[4] > score[3]:
-                print(f"Locational data:\n{locate()}")
-        
-        
+        while self.user_input != "exit":
+            self.user_input = input("You:\t")
+            print(self.reply(self.user_input))
+
+    def reply(self,reply_input):
+        score = [0, 0, 0, 0, 0]
+        tokens = tokenize(reply_input)
+        stemmed_words = []
+        for token in tokens:
+            stemmed_words.append((stem(token)))
+        for word in stemmed_words:
+            if word in self.greetings:
+                score[0] += 1
+            elif word in self.farewells:
+                score[1] += 1
+            elif word in self.time:
+                score[2] += 3
+            elif word in self.help:
+                score[3] += 2
+            elif word in self.location:
+                score[4] += 3
+        if score[0] > score[1] and score[0] > score[2] and score[0] > score[3] and score[0] > score[4]:
+            return "Hello"
+        elif score[1] > score[0] and score[1] > score[2] and score[1] > score[3] and score[1] > score[4]:
+            return "Bye then"
+        elif score[2] > score[0] and score[2] > score[1] and score[2] > score[3] and score[2] > score[4]:
+            return f"{current_hour()}:{current_minute()}:{current_second()}"
+        elif score[3] > score[0] and score[3] > score[1] and score[3] > score[2] and score[3] > score[4]:
+            return "How may I assist you?"
+        elif score[4] > score[0] and score[4] > score[1] and score[4] > score[2] and score[4] > score[3]:
+            return f"Locational data:\n{locate()}"
+        return None
+
+    def reply_test(self):
+        if self.testing_input and self.testing_output and len(self.testing_input) == len(self.testing_output):
+            for test in range(len(self.testing_input)):
+                if self.reply(self.testing_input[test]) != self.testing_output[test]:
+                    return 0
+            return 1
+
+
 #turtlel
       
 def dots(turt_name, number, random_colours=True, colours=None, minimum=20, maximum=100):
