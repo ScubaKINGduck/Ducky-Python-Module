@@ -357,7 +357,9 @@ def splat(t,num):
             t.right(360/num+duckint(1,10))
         t.right(3**i*duckint(1,10))
     
-def pizza(t=Turtle(),x=0,y=0,size=None):
+def pizza(t=None,x=None,y=None,size=None):
+    if not t:
+        t=Turtle()
     if not x:
         x = int(input("X:\n"))
     if not y:
