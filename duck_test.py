@@ -38,7 +38,8 @@ class Tester:
         else:
             print("\033[91m------------------------------------------------------------")
             print("\033[91mCompleted less than 60% successfully:\n")
-
+        if self.success:
+            print(f"\033[32mSuccessful tests:\n")
         for s in self.success:
             print(f"\033[32m{s}")
         if len(self.errors) > 0:
@@ -61,13 +62,14 @@ input() #pause
 #matrix manager test
 Test2 = Tester()
 Test2.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
-Test2.test("line = [[0,1,0][0,1,0][0,1,0]]","Make a 3 x 3 matrix with a line in the middle")
-Test2.test("Matrix = MatrixManager(background,2,line)","Make an object of the Matrix Manager class")
+Test2.test("line = [[0,1,0],[0,1,0],[0,1,0]]","Make a 3 x 3 matrix with a line in the middle")
+Test2.test("Matrix = ducky.MatrixManager(background,2,line)","Make an object of the Matrix Manager class")
 Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
-Test2.test("Matrix.x+=1","Move the line horizontally in the matrix")
+Test2.test("Matrix.x_pos+=1","Move the line horizontally in the matrix")
 Test2.test("Matrix.loop_func()","Run the main loop function of the matrix")
-Test2.test("Matrix.x-=2","Move the line horizontally in the matrix")
+Test2.test("Matrix.x_pos-=2","Move the line horizontally in the matrix")
 Test2.test("Matrix.loop_func","Run the main loop function of the matrix")
-Test2.test("Matrix.x+=1","Reset the line's position")
-Test2.test("Matrix.y+=1","Move the line vertically in the matrix")
+Test2.test("Matrix.x_pos+=1","Reset the line's position")
+Test2.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
+Test2.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
 Test2.results()
