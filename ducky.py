@@ -166,7 +166,7 @@ class MatrixManager:
         
     def self_render(self,t_x,t_y,printing=True,sprite_cond=1):
         draw(self.background,t_x,t_y,val=sprite_cond)
-        if printing == True:
+        if printing:
             render(self.background)
             
     def loop_func(self,rendering=True,clearing=True):
