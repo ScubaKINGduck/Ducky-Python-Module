@@ -360,7 +360,7 @@ def splat(t,num):
 def pizza(t=None,x=None,y=None,size=None):
     if t is None:
         t=Turtle()
-    if not x:
+    if x is None:
         x = int(input("X:\n"))
     if not y:
         y = int(input("Y:\n"))
