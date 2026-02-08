@@ -306,7 +306,9 @@ class Chatbot:
         
 #turtlel
       
-def dots(turt_name,number,random_colours=True,colours=["black"],minimum=20,maximum=100):
+def dots(turt_name, number, random_colours=True, colours=None, minimum=20, maximum=100):
+    if colours is None:
+        colours = ["black"]
     turt_name.penup()
     for num in range(number):
         turt_name.goto(duckint(-250,250),duckint(-250,250))
