@@ -101,7 +101,8 @@ Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("t.clear()","Clear the canvas")
 Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("ducky.star(t)","Run custom star function")
-Test2.test("ducky.done()","Close turtle")
+ducky.wait(500)
+Test2.test("ducky.bye()","Close turtle")
 Test2.results()
 
 
