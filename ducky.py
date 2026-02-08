@@ -178,7 +178,7 @@ class MatrixManager:
             tempx[i] += self.x_pos
         for i in range(len(tempy)):
             tempy[i] -= self.y_pos
-        if self.wrapping == True:
+        if self.wrapping:
             for i in range(len(tempx)):
                 tempx[i] = tempx[i] % len(self.background[0]) #wrap horizontally
             for i in range(len(tempy)):
