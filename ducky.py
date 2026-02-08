@@ -1280,7 +1280,7 @@ class TurtleScreen(TurtleScreenBase):
                               (5.88,-8.09), (8.09,-5.88), (9.51,-3.09))),
                   "square" : Shape("polygon", ((10,-10), (10,10), (-10,10),
                               (-10,-10))),
-                "dodiddyhedron" : Shape("polygon", ((10,-5.77), (0,11.55),
+                "triangle" : Shape("polygon", ((10,-5.77), (0,11.55),
                               (-10,-5.77))),
                   "classic": Shape("polygon", ((0,0),(-5,-9),(0,-7),(5,-9))),
                    "blank" : Shape("image", self._blankimage())
