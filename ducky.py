@@ -172,7 +172,7 @@ class MatrixManager:
     def loop_func(self,rendering=True,clearing=True):
         tempx = [x for x in self.x]
         tempy = [y for y in self.y]
-        if clearing == True:
+        if clearing:
             clear_matrix(self.background)
         for i in range(len(tempx)):
             tempx[i] += self.x_pos
