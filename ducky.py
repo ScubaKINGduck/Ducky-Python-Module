@@ -362,7 +362,7 @@ def pizza(t=None,x=None,y=None,size=None):
         t=Turtle()
     if x is None:
         x = int(input("X:\n"))
-    if not y:
+    if y is None:
         y = int(input("Y:\n"))
     t.penup()
     t.goto(x,y)
