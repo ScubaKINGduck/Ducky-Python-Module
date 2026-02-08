@@ -1105,7 +1105,6 @@ class TurtleScreenBase(object):
         (No subprocess) - for interactive use of turtle graphics.
 
         Example (for a TurtleScreen instance named screen):
-        >>> screen.mainloop()
 
         """
         self.cv.tk.mainloop()
@@ -1120,7 +1119,6 @@ class TurtleScreenBase(object):
         If the dialog is canceled, return None.
 
         Example (for a TurtleScreen instance named screen):
-        >>> screen.textinput("NIM", "Name of first player:")
 
         """
         return simpledialog.askstring(title, prompt, parent=self.cv)
@@ -1140,7 +1138,6 @@ class TurtleScreenBase(object):
         If the dialog is canceled,  return None.
 
         Example (for a TurtleScreen instance named screen):
-        >>> screen.numinput("Poker", "Your stakes:", 1000, minval=10, maxval=10000)
 
         """
         return simpledialog.askfloat(title, prompt, initialvalue=default,
@@ -1310,7 +1307,6 @@ class TurtleScreen(TurtleScreenBase):
         no backgroundimage, no eventbindings and tracing on.
 
         Example (for a TurtleScreen instance named screen):
-        >>> screen.clear()
 
         Note: this method is not available as function.
         """
