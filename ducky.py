@@ -74,8 +74,8 @@ def render(mat):
 def duckint(min,max):
     return random.randint(min,max)
 
-def choose(listinput):
-    return random.choice(listinput)
+def choose(list_input):
+    return random.choice(list_input)
 
 def wait(ms):
     time.sleep(ms/1000)
