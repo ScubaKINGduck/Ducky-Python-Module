@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Ducky-Python-Module.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/duck_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ducky.py" beforeDir="false" afterPath="$PROJECT_DIR$/ducky.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ScubaKINGduck&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ScubaKINGduck/Ducky-Python-Module.git&quot;,
+    &quot;accountId&quot;: &quot;b6b901b1-77bb-4a40-bb59-c44c5630fe3c&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="39NawwcV5nO37qF6RoFQRfBca8p" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Doctests in ducky.executor": "Run",
+    "Python.duck_test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "two.files.diff.last.used.file": "C:/Users/scuba/PycharmProjects/Ducky-Python-Module/ducky.py"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-401cc9104683-e2d783800521-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.29188.22" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="" />
+      <created>1770539224312</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1770539224312</updated>
+    </task>
+    <task id="LOCAL-00001" summary="TurtleManager class added">
+      <option name="closed" value="true" />
+      <created>1770542898030</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1770542898030</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fixed incorrect reference to turtle instance in the Turtle Manager class">
+      <option name="closed" value="true" />
+      <created>1770543053851</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770543053851</updated>
+    </task>
+    <task id="LOCAL-00003" summary="New line">
+      <option name="closed" value="true" />
+      <created>1770543295134</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1770543295134</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Better deceleration of colours parameter">
+      <option name="closed" value="true" />
+      <created>1770543337134</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1770543337134</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Simplification of error output check in draw function">
+      <option name="closed" value="true" />
+      <created>1770550331112</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550331112</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Used more conventional snake_case for a parameter name">
+      <option name="closed" value="true" />
+      <created>1770550373738</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550373738</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed Exception printing in the calc function">
+      <option name="closed" value="true" />
+      <created>1770550406396</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550406396</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Defined self.x and self.y in the Matrix Manager constructor">
+      <option name="closed" value="true" />
+      <created>1770550455388</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550455388</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed previous commit">
+      <option name="closed" value="true" />
+      <created>1770550491233</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550491233</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Removed redundant brackets">
+      <option name="closed" value="true" />
+      <created>1770550508081</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550508081</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Simplified boolean checks">
+      <option name="closed" value="true" />
+      <created>1770550552148</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550552148</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Simplified boolean checks">
+      <option name="closed" value="true" />
+      <created>1770550561593</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550561593</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Simplified boolean checks">
+      <option name="closed" value="true" />
+      <created>1770550565047</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550565047</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Removed redundant brackets">
+      <option name="closed" value="true" />
+      <created>1770550583419</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550583419</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changed colours default value from a list to None in the Turtle&#10;Manager constructor">
+      <option name="closed" value="true" />
+      <created>1770550619180</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550619180</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Simplified length check">
+      <option name="closed" value="true" />
+      <created>1770550644135</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550644135</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Switched positions of arguments in the colour function of the Turtle Manager class">
+      <option name="closed" value="true" />
+      <created>1770550689124</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550689124</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fixed horrible naming of functions">
+      <option name="closed" value="true" />
+      <created>1770550745280</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550745280</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fixed horrible naming of functions">
+      <option name="closed" value="true" />
+      <created>1770550748131</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550748131</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed horrible naming of functions">
+      <option name="closed" value="true" />
+      <created>1770550755533</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1770550755533</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test file" />
+    <MESSAGE value="TurtleManager class added" />
+    <MESSAGE value="Fixed incorrect reference to turtle instance in the Turtle Manager class" />
+    <MESSAGE value="New line" />
+    <MESSAGE value="Better deceleration of colours parameter" />
+    <MESSAGE value="Simplification of error output check in draw function" />
+    <MESSAGE value="Used more conventional snake_case for a parameter name" />
+    <MESSAGE value="Fixed Exception printing in the calc function" />
+    <MESSAGE value="Defined self.x and self.y in the Matrix Manager constructor" />
+    <MESSAGE value="Fixed previous commit" />
+    <MESSAGE value="Simplified boolean checks" />
+    <MESSAGE value="Removed redundant brackets" />
+    <MESSAGE value="Changed colours default value from a list to None in the Turtle&#10;Manager constructor" />
+    <MESSAGE value="Simplified length check" />
+    <MESSAGE value="Switched positions of arguments in the colour function of the Turtle Manager class" />
+    <MESSAGE value="Fixed horrible naming of functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed horrible naming of functions" />
+  </component>
+</project>
