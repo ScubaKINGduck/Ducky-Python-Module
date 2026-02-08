@@ -229,7 +229,7 @@ class TurtleManager:
         self.colours = colours
         if not self.colours:
             self.colours = ["red","green","blue","yellow","white","black","green","purple"]
-    def colour(self,index=None,name=None):
+    def colour(self,name=None,index=None):
         if index:
             self.turtle.pencolour(self.colours[index])
         else:
