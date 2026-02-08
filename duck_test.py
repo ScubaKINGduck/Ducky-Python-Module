@@ -96,6 +96,7 @@ Test2.test("ducky.pizza(t)","Run custom pizza function")
 Test2.test("t.clear()","Clear the canvas")
 Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("ducky.star(t)","Run custom star function")
+Test2.test("ducky.done()","Close turtle")
 Test2.results()
 
 
