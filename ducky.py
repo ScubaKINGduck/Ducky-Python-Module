@@ -364,7 +364,8 @@ def pizza(t=Turtle(),x=0,y=0,size=None):
         y = int(input("Y:\n"))
     t.penup()
     t.goto(x,y)
-    size = int(input("Size:\n")) * 10
+    if not size:
+        size = int(input("Size:\n")) * 10
     t.speed(0)
     t.colour("wheat")
     t.dot(35*size)
