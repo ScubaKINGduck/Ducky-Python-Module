@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="Fixed the tests and some turtle functions">
+    <list default="true" id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="Fixed small bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/duck_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/duck_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ducky.py" beforeDir="false" afterPath="$PROJECT_DIR$/ducky.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,7 +337,87 @@
       <option name="project" value="LOCAL" />
       <updated>1770573439023</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Replaced if not with if is None">
+      <option name="closed" value="true" />
+      <created>1770573580853</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573580853</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Replaced if not with if is None">
+      <option name="closed" value="true" />
+      <created>1770573584813</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573584813</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Replaced if not with if is None">
+      <option name="closed" value="true" />
+      <created>1770573587538</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573587538</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Replaced if not with if is None">
+      <option name="closed" value="true" />
+      <created>1770573591961</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573591961</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fixed small bugs">
+      <option name="closed" value="true" />
+      <created>1770573615686</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573615686</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Removed inputs from inside the function they can just be used in parameters">
+      <option name="closed" value="true" />
+      <created>1770573757849</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573757849</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Removed the turtle initialisation from the test">
+      <option name="closed" value="true" />
+      <created>1770573977830</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573977830</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Switched t.home and t.clear">
+      <option name="closed" value="true" />
+      <created>1770574292717</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574292717</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Switched t.home and t.clear">
+      <option name="closed" value="true" />
+      <created>1770574298533</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574298533</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Switched t.home and t.clear and added a wait">
+      <option name="closed" value="true" />
+      <created>1770574305807</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1770574305807</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -351,12 +432,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TurtleManager class added" />
-    <MESSAGE value="Fixed incorrect reference to turtle instance in the Turtle Manager class" />
-    <MESSAGE value="New line" />
-    <MESSAGE value="Better deceleration of colours parameter" />
-    <MESSAGE value="Simplification of error output check in draw function" />
-    <MESSAGE value="Used more conventional snake_case for a parameter name" />
     <MESSAGE value="Fixed Exception printing in the calc function" />
     <MESSAGE value="Defined self.x and self.y in the Matrix Manager constructor" />
     <MESSAGE value="Fixed previous commit" />
@@ -376,6 +451,12 @@
     <MESSAGE value="Added new lines for better readability" />
     <MESSAGE value="Ran ducky.done() after all turtle tests were finished" />
     <MESSAGE value="Fixed accidental turtle windows opening" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed accidental turtle windows opening" />
+    <MESSAGE value="Replaced if not with if is None" />
+    <MESSAGE value="Fixed small bugs" />
+    <MESSAGE value="Removed inputs from inside the function they can just be used in parameters" />
+    <MESSAGE value="Removed the turtle initialisation from the test" />
+    <MESSAGE value="Switched t.home and t.clear" />
+    <MESSAGE value="Switched t.home and t.clear and added a wait" />
+    <option name="LAST_COMMIT_MESSAGE" value="Switched t.home and t.clear and added a wait" />
   </component>
 </project>

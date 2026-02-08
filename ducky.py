@@ -360,8 +360,6 @@ def splat(t,num):
 def pizza(t,x=0,y=0,size=1):
     t.penup()
     t.goto(x,y)
-    if size is None:
-        size = int(input("Size:\n")) * 10
     t.speed(0)
     t.colour("wheat")
     t.dot(35*size)
@@ -369,7 +367,6 @@ def pizza(t,x=0,y=0,size=1):
     t.dot(30*size)
     t.colour("yellow")
     t.dot(28*size)
-    t.penup()
     t.colour("red")
     for i in range(duckint(10,15)):
         t.goto(duckint(x+-100,x+100),duckint(y+-100,y+100))
