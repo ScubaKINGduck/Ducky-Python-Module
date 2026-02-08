@@ -112,8 +112,8 @@ def divide(a,b):
 def calc(param):
     try:
         return eval(param)
-    except Exception:
-        return Exception
+    except Exception as e:
+        return e
 
 def find_total(number): #adds all numbers below it above 0 (including itself) e.g. find_total(5) = 5+4+3+2+1 = 15
     if number < 1:
