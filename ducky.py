@@ -146,8 +146,8 @@ class MatrixManager():
     def __init__(self,background,fps,mat=None,wrapping=False,sprite_condition=1):
         self.mat = mat
         self.fps = fps
-        self.x = x
-        self.y = y
+        self.x = None
+        self.y = None
         self.sprite_condition = sprite_condition
         self.wrapping = wrapping
         self.background = background
