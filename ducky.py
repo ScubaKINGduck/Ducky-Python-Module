@@ -216,6 +216,48 @@ class Manage():
             return file.read()
 
 
+class TurtleManager:
+    def __init__(self,turtle,colours=list):
+        self.turtle = turtle
+        self.x = self.turtle.xcor()
+        self.y = self.turtle.xcor()
+        self.width = self.turtle.width()
+        self.pen_down = self.t.isdown()
+        self.rotation = self.turtle.heading()
+        self.colours = colours
+        if len(self.colours) == 0:
+            self.colours = ["red","green","blue","yellow","white","black","green","purple"]
+    def colour(self,index=None,name=None):
+        if index:
+            self.turtle.pencolour(self.colours[index])
+        else:
+            self.turtle.pencolour(name)
+    def update(self):
+        self.width = self.turtle.width()
+        self.rotation = self.turtle.heading()
+        self.x = self.turtle.xcor()
+        self.y = self.turtle.xcor()
+        self.pen_down = self.turtle.isdown()
+    def change(self,x=False,y=False,rotation=False,rotation_val=None,width=False,width_val=None,pen_state=False):
+        if x and y:
+            if self.pen_down:
+                self.turtle.penup()
+                self.turtle.goto(self.x, self.y)
+                self.turtle.pendown()
+            else:
+                self.turtle.goto(self.x, self.y)
+
+        if rotation and rotation_val is not None:
+            self.turtle.setheading(rotation_val)
+
+        if pen_state:
+            if self.pen_down:
+                self.turtle.penup()
+            else:
+                self.turtle.pendown()
+        if width and width_val is not None:
+            self.turtle.width(width_val)
+
 #unfinished chatbot
             
 class Chatbot:
