@@ -4,7 +4,6 @@ from copy import deepcopy
 from tkinter import simpledialog
 from nltk.tokenize import word_tokenize
 from nltk.stem import LancasterStemmer
-from geopy.geocoders import Nominatim
 
 #matrix functions
 
@@ -98,16 +97,16 @@ def stem(string):
     lancaster = LancasterStemmer()
     return lancaster.stem(string)
 
-def add():
+def add(a,b):
     return a + b
 
-def subtract():
+def subtract(a,b):
     return a - b
 
-def multiply():
+def multiply(a,b):
     return a * b
 
-def divide():
+def divide(a,b):
     return a / b
 
 def calc(param):
@@ -190,10 +189,11 @@ class Manage():
     def __init__(self, file, action):
         self.file = file
         self.action = action
+        self.text = None
         if self.action.lower() == "write":
             self.write_to_file()
         elif self.action.lower() == "read":
-            self.read_from_file()
+            self.text = self.read_from_file()
         elif self.action.lower() == "append":
             self.append_to_file()
         elif self.action.lower() == "delete":
@@ -211,6 +211,9 @@ class Manage():
     def delete_a_file(self):
         if input("Are you sure ('y') ?:\n") == "y":
             os.remove(self.file)
+    def read_from_file(self):
+        with open(self.file,"r") as file:
+            return file.read()
 
 
 #unfinished chatbot
