@@ -97,7 +97,8 @@ Test2.test("t.clear()","Clear the canvas")
 Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("ducky.star(t)","Run custom star function")
 Test2.results()
-input()
+
+
 #matrix manager test
 Test3 = Tester()
 Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
