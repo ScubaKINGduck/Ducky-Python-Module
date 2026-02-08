@@ -17,7 +17,7 @@ def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified pos
             for i,x_pos in enumerate(x):
                 mat[y[i]][x_pos] = val
         except Exception as e:
-            if errors == True:
+            if errors:
                 print(e)
     else:
         print(f"Mat:\t{mat}\nX:\t{x}\nY:\t{y}")
