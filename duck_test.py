@@ -125,6 +125,6 @@ outputs = ["Hello","Bye then"]
 Test4.test("chat=ducky.Chatbot(inputs,outputs)","Initialise a chatbot object")
 Test4.test("5/(chat.reply_test())","Test outputs")
 Test4.results()
-
+#TODO add more tests for all the turtle functions and all the classes
 print_average()
 print("\033[0m")

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="45d8beaa-4ffa-4430-8520-3341dda5119e" name="Changes" comment="Fixed bugs in chatbot and added tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/duck_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/duck_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
