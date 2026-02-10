@@ -175,10 +175,10 @@ class MatrixManager:
         tempy = [y for y in self.y]
         if clearing:
             clear_matrix(self.background)
-        for i in range(len(tempx)):
-            tempx[i] += self.x_pos
-        for i in range(len(tempy)):
-            tempy[i] -= self.y_pos
+        for i in range(len(temp_x)):
+            temp_x[i] += self.x_pos
+        for i in range(len(temp_y)):
+            temp_y[i] -= self.y_pos
         if self.wrapping:
             for i in range(len(temp_x)):
                 temp_x[i] = temp_x[i] % len(self.background[0]) #wrap horizontally
