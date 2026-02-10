@@ -180,11 +180,11 @@ class MatrixManager:
         for i in range(len(tempy)):
             tempy[i] -= self.y_pos
         if self.wrapping:
-            for i in range(len(tempx)):
-                tempx[i] = tempx[i] % len(self.background[0]) #wrap horizontally
-            for i in range(len(tempy)):
-                tempy[i] = tempy[i] % len(self.background) #wrap vertically
-        self.self_render(tempx,tempy,printing=rendering,sprite_cond=self.sprite_condition)
+            for i in range(len(temp_x)):
+                temp_x[i] = temp_x[i] % len(self.background[0]) #wrap horizontally
+            for i in range(len(temp_y)):
+                temp_y[i] = temp_y[i] % len(self.background) #wrap vertically
+        self.self_render(temp_x,temp_y,printing=rendering,sprite_cond=self.sprite_condition)
         wait(1000/self.fps)
 
 
