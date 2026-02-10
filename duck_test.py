@@ -76,9 +76,17 @@ def print_average():
     print(f"{color}------------------------------------------------------------")
     print(f"{color}Average success across all Tester instances: {avg:.2f}%\033[0m")
 
+def hide_turtle_window():
+    screen = ducky.Screen()
+    screen.tracer(0, 0)
+    canvas = screen.getcanvas()
+    root = canvas.winfo_toplevel()
+    root.withdraw()
+
 #basic turtle and Turtle Manager
 Test1 = Tester()
 Test1.test("import ducky","Import ducky")
+hide_turtle_window()
 t=ducky.Turtle()
 Test1.test("t.speed(0)","Set turtle speed")
 Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
