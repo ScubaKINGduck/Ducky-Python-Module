@@ -128,7 +128,7 @@ Test3 = Tester()
 
 Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
 Test3.test("line = [[0,1,0],[0,1,0],[0,1,0]]","Make a 3 x 3 matrix with a line in the middle")
-Test3.test("Matrix = ducky.MatrixManager(background,2,line)","Make an object of the Matrix Manager class")
+Test3.test("Matrix = ducky.MatrixManager(background,1000,line)","Make an object of the Matrix Manager class")
 Test3.test("Matrix.loop_func()","Run the main loop function of the matrix")
 Test3.test("Matrix.x_pos+=1","Move the line horizontally in the matrix")
 Test3.test("Matrix.loop_func()","Run the main loop function of the matrix")
