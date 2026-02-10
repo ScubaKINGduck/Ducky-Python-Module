@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d08fc6c-5f05-4d2f-b811-6a3e68e8ced4" name="Changes" comment="Added more tests for turtle">
+    <list default="true" id="7d08fc6c-5f05-4d2f-b811-6a3e68e8ced4" name="Changes" comment="Added blank lines for better readability and more comments were added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/duck_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/duck_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +40,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests.executor": "Run",
+    "Python.Tests.executor": "Run",
     "Python.duck_test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -46,6 +49,39 @@
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="PythonConfigurationType" />
+        <option value="tests" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tests" type="PythonConfigurationType" factoryName="Python">
+      <module name="Ducky-Python-Module" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11 (.virtualenvs)" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\scuba\PycharmProjects\Ducky-Python-Module" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/duck_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -109,14 +145,61 @@
       <option name="project" value="LOCAL" />
       <updated>1770750226148</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Hid the turtle window during tests">
+      <option name="closed" value="true" />
+      <created>1770750994864</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770750994864</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added blank lines for better readability and more comments were added">
+      <option name="closed" value="true" />
+      <created>1770751073821</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770751073821</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added time perf_counter">
+      <option name="closed" value="true" />
+      <created>1770751486661</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1770751486661</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed the timer">
+      <option name="closed" value="true" />
+      <created>1770751660427</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1770751660427</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Used proper snake case" />
     <MESSAGE value="Small syntax changes" />
     <MESSAGE value="Deleted temporary file" />
     <MESSAGE value="Added more tests for turtle" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more tests for turtle" />
+    <MESSAGE value="Hid the turtle window during tests" />
+    <MESSAGE value="Added blank lines for better readability and more comments were added" />
+    <MESSAGE value="Added time perf_counter" />
+    <MESSAGE value="fixed the timer" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the timer" />
   </component>
 </project>
