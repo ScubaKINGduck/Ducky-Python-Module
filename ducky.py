@@ -320,7 +320,7 @@ class Chatbot:
             return 1
 
 def perf_counter():
-    time.perf_counter()
+    return time.perf_counter()
 #turtlel
       
 def dots(turt_name, number, random_colours=True, colours=None, minimum=20, maximum=100):
