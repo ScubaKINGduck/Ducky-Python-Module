@@ -83,11 +83,14 @@ def hide_turtle_window():
     root = canvas.winfo_toplevel()
     root.withdraw()
 
-#basic turtle and Turtle Manager
+#basic turtle and Turtle Manager test
 Test1 = Tester()
+
 Test1.test("import ducky","Import ducky")
+
 hide_turtle_window()
 t=ducky.Turtle()
+
 Test1.test("t.speed(0)","Set turtle speed")
 Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
 Test1.test("for i in duck.colours:\n\tduck.colour(i)\n\tt.penup()\n\tt.goto(0,0)\n\tt.pendown()\n\tt.forward(100)","Test pen and colours")
@@ -95,9 +98,10 @@ Test1.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test1.test("t.clear()","Clear the canvas")
 Test1.results()
 
-
-#turtle function tests
+ducky.wait(200)
+#turtle function test
 Test2 = Tester()
+
 Test2.test("ducky.splat(t,3)","Run custom splat function")
 Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test2.test("t.clear()","Clear the canvas")
@@ -121,6 +125,7 @@ Test2.results()
 ducky.wait(200)
 #matrix manager test
 Test3 = Tester()
+
 Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
 Test3.test("line = [[0,1,0],[0,1,0],[0,1,0]]","Make a 3 x 3 matrix with a line in the middle")
 Test3.test("Matrix = ducky.MatrixManager(background,2,line)","Make an object of the Matrix Manager class")
@@ -134,8 +139,10 @@ Test3.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
 Test3.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
 Test3.results()
 
+#chatbot test
 ducky.wait(200)
 Test4 = Tester()
+
 inputs = ["hello there","bye"]
 outputs = ["Hello","Bye then"]
 Test4.test("chat=ducky.Chatbot(inputs,outputs)","Initialise a chatbot object")
