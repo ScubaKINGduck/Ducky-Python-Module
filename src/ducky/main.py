@@ -1,4 +1,4 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, numpy
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
@@ -97,6 +97,9 @@ def tokenize(string):
 def stem(string):
     lancaster = LancasterStemmer()
     return lancaster.stem(string)
+    
+def array(list):
+    return numpy.array(list)
 
 def add(a,b):
     return a + b
