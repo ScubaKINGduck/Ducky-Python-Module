@@ -187,3 +187,9 @@ full_timer.stop()
 print(f"\033[35mCompleted all tests in {full_timer.elapsed()} seconds")
 print_average()
 print("\033[0m")
+avg = Tester.average()
+if avg < 100:
+    print("Tests failed - Check output above.")
+    exit(1)
+else:
+    exit(0)
