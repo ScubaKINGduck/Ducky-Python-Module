@@ -16,7 +16,7 @@ authors = [
 
 # External modules your package depends on
 dependencies = [
-    "nltk>=3.8.0",
+    "nltk>=3.8.0",  
     "requests>=2.30.0",
     "numpy>=1.26.0"
 ]
