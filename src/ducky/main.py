@@ -158,6 +158,17 @@ def time_function(func):
         return result, execution_time
     return wrapper
 
+def repeat(times):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            results = []
+            for _ in range(times):
+                result = func(*args, **kwargs)
+                results.append(result)
+            return results
+        return wrapper
+    return decorator
+
 #classes
 
 class MatrixManager:
