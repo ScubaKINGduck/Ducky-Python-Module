@@ -144,6 +144,9 @@ def locate():
     coords = response.text.strip()
     return coords
 
+def perf_counter():
+    return time.perf_counter()
+
 #classes
 
 class MatrixManager:
