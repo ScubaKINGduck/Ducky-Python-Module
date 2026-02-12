@@ -172,7 +172,8 @@ def repeat(times):
 def modify(func,modifier):
     try:
         return modifier(func())
-    except Exception:
+    except Exception as e:
+        print("modify() error:", e)
         return 0
 
 #classes
