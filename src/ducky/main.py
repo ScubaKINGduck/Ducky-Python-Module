@@ -72,8 +72,8 @@ def render(mat):
     
 #my functions
     
-def duckint(min,max):
-    return random.randint(min,max)
+def rand_int(minimum,maximum):
+    return random.randint(minimum,maximum)
 
 def choose(list_input):
     return random.choice(list_input)
