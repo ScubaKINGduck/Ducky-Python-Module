@@ -98,8 +98,8 @@ def stem(string):
     lancaster = LancasterStemmer()
     return lancaster.stem(string)
     
-def array(list):
-    return numpy.array(list)
+def array(lst):
+    return numpy.array(lst)
 
 def add(a,b):
     return a + b
