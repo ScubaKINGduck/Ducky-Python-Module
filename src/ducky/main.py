@@ -169,6 +169,12 @@ def repeat(times):
         return wrapper
     return decorator
 
+def modify(func,modifier):
+    try:
+        return modifier(func)
+    except Exception:
+        return 0
+
 #classes
 
 class MatrixManager:
