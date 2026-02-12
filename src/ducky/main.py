@@ -128,9 +128,14 @@ def ask_json(url):
     return requests.get(url).json()
 
 def get_coords():
-    response = requests.get('https://ipinfo.io')
-    coords = response.text.strip()
-    return coords
+    response = requests.get("https://ipinfo.io/json", timeout=5)
+    response.raise_for_status()
+    data = response.json()
+    loc = data.get("loc")  # "lat,lon"
+    if loc:
+        lat, lon = map(float, loc.split(","))
+        return lat, lon
+    return None
 
 def get_time():
     return time.perf_counter()
