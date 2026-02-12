@@ -170,11 +170,7 @@ def repeat(times):
     return decorator
 
 def modify(func,modifier):
-    try:
-        return modifier(func())
-    except Exception as e:
-        print("modify() error:", e)
-        return 0
+    return modifier(func())
 
 #classes
 
