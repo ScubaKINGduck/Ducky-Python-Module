@@ -113,7 +113,7 @@ def find_total(number): #adds all numbers below it above 0 (including itself) e.
     else:
         return number + find_total(number - 1)
     
-def find_sum_of_evens(number): #adds all even numbers below it above 0 (including itself but only if it's even) e.g find_sum_of_evens(5) = 4+2 = 6
+def find_sum_of_evens(number): #adds all even numbers below it above 0 (including itself but only if it's even) e.g. find_sum_of_evens(5) = 4+2 = 6
     if number < 1:
         return 0
     elif number % 2 == 0:
