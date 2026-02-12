@@ -151,7 +151,7 @@ def get_time():
 
 def time_function(func):
     def wrapper(*args, **kwargs):
-        start = perf_counter()
+        start = get_time()
         result = func(*args, **kwargs)
         end = get_time()
         execution_time = end - start
