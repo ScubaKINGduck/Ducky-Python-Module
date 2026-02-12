@@ -171,7 +171,7 @@ def repeat(times):
 
 def modify(func,modifier):
     try:
-        return modifier(func)
+        return modifier(func())
     except Exception:
         return 0
 
