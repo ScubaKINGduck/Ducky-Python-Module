@@ -127,7 +127,7 @@ def ask(url):
 def ask_json(url):
     return requests.get(url).json()
 
-def locate():
+def get_coords():
     response = requests.get('https://ipinfo.io')
     coords = response.text.strip()
     return coords
