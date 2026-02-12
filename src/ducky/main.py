@@ -144,7 +144,7 @@ def locate():
     coords = response.text.strip()
     return coords
 
-def perf_counter():
+def get_time():
     return time.perf_counter()
 
 #my decorators
