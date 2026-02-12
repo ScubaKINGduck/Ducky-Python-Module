@@ -107,19 +107,14 @@ def calc(param):
     except Exception as e:
         return e
 
-def find_total(number): #adds all numbers below it above 0 (including itself) e.g. find_total(5) = 5+4+3+2+1 = 15
+def find_total(number,condition=None): #adds all numbers below it that meet a certain condition
     if number < 1:
         return 0
-    else:
-        return number + find_total(number - 1)
-    
-def find_sum_of_evens(number): #adds all even numbers below it above 0 (including itself but only if it's even) e.g. find_sum_of_evens(5) = 4+2 = 6
-    if number < 1:
-        return 0
-    elif number % 2 == 0:
-        return number + find_sum_of_evens(number - 2)
-    else:
-        return find_sum_of_evens(number - 1)
+    total = 0
+    for n in range(1, number + 1):
+        if condition is None or condition(n):
+            total += n
+    return total
     
 def ask(url):
     return requests.get(url)
