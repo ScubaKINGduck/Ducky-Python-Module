@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ducky-python-module"
-version = "0.1.2"
+version = "0.1.3"
 description = "Ducky Python module"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -27,3 +27,4 @@ where = ["src"]
 [project.urls]
 Repository = "https://github.com/ScubaKINGduck/Ducky-Python-Module"
 Issues = "https://github.com/ScubaKINGduck/Ducky-Python-Module/issues"
+
