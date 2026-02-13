@@ -2670,8 +2670,6 @@ class TPen(object):
         No argument.
 
         Example (for a Turtle instance named turtle):
-        >>> turtle.hideturtle()
-        >>> print turtle.isvisible():
         False
         """
         return self._shown
