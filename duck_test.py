@@ -68,16 +68,16 @@ class IndependentTimer:
         self.end_time = None
 
     def start(self):
-        self.start_time = ducky.perf_counter()
+        self.start_time = ducky.get_time()
 
     def stop(self):
-        self.end_time = ducky.perf_counter()
+        self.end_time = ducky.get_time()
 
     def elapsed(self):
         if self.start_time is None:
             return 0
         if self.end_time is None:
-            return ducky.perf_counter() - self.start_time
+            return ducky.get_time() - self.start_time
         return self.end_time - self.start_time
 
 
@@ -105,7 +105,7 @@ def hide_turtle_window():
 full_timer = IndependentTimer()
 full_timer.start()
 #basic turtle and Turtle Manager test
-start = ducky.perf_counter()
+start = ducky.get_time()
 Test1 = Tester()
 
 Test1.test("import ducky","Import ducky")
@@ -118,14 +118,14 @@ Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
 Test1.test("for i in duck.colours:\n\tduck.colour(i)\n\tt.penup()\n\tt.goto(0,0)\n\tt.pendown()\n\tt.forward(100)","Test pen and colours")
 Test1.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
 Test1.test("t.clear()","Clear the canvas")
-end = ducky.perf_counter()
+end = ducky.get_time()
 print(f"\033[35mCompleted in {end-start} seconds")
 Test1.results()
 
 
 ducky.wait(20)
 #turtle function test
-start = ducky.perf_counter()
+start = ducky.get_time()
 Test2 = Tester()
 
 Test2.test("ducky.splat(t,3)","Run custom splat function")
@@ -146,13 +146,13 @@ Test2.test("t.clear()","Clear the canvas")
 Test2.test("ducky.target_board(t)","Run custom star function")
 ducky.wait(20)
 Test2.test("ducky.bye()","Close turtle")
-end = ducky.perf_counter()
+end = ducky.get_time()
 print(f"\033[35mCompleted in {end-start} seconds")
 Test2.results()
 
 ducky.wait(20)
 #matrix manager test
-start = ducky.perf_counter()
+start = ducky.get_time()
 Test3 = Tester()
 
 Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
@@ -166,20 +166,20 @@ Test3.test("Matrix.loop_func()","Run the main loop function of the matrix")
 Test3.test("Matrix.x_pos+=1","Reset the line's position")
 Test3.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
 Test3.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
-end = ducky.perf_counter()
+end = ducky.get_time()
 print(f"\033[35mCompleted in {end-start} seconds")
 Test3.results()
 
 #chatbot test
 ducky.wait(20)
-start = ducky.perf_counter()
+start = ducky.get_time()
 Test4 = Tester()
 
 inputs = ["hello there","bye"]
 outputs = ["Hello","Bye then"]
 Test4.test("chat=ducky.Chatbot(inputs,outputs)","Initialise a chatbot object")
 Test4.test("5/(chat.reply_test())","Test outputs")
-end = ducky.perf_counter()
+end = ducky.get_time()
 print(f"\033[35mCompleted in {end-start} seconds")
 Test4.results()
 #TODO add more tests for all the classes
