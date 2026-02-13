@@ -1,4 +1,4 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, numpy
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, numpy, ast
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
@@ -17,7 +17,7 @@ def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified pos
         try:
             for i,x_pos in enumerate(x):
                 mat[y[i]][x_pos] = val
-        except Exception as e:
+        except (ValueError,IndexError) as e:
             if errors:
                 print(e)
     else:
@@ -104,7 +104,7 @@ def array(lst):
 def calc(param):
     try:
         return eval(param)
-    except Exception as e:
+    except (ValueError,SyntaxError) as e:
         return e
 
 def find_total(number,condition=None): #adds all numbers below it that meet a certain condition
