@@ -337,6 +337,7 @@ class Chatbot:
                 if self.reply(self.testing_input[test]) != self.testing_output[test]:
                     return 0
             return 1
+        return None
 
 #turtlel
       
