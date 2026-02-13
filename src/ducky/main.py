@@ -345,10 +345,10 @@ def dots(turt_name, number, random_colours=True, colours=None, minimum=20, maxim
         colours = ["black"]
     turt_name.penup()
     for num in range(number):
-        turt_name.goto(duckint(-250,250),duckint(-250,250))
+        turt_name.goto(rand_int(-250,250),rand_int(-250,250))
         if random_colours == True and colours:
             turt_name.pencolour(choose(colours))
-            turt_name.dot(duckint(minimum,maximum))
+            turt_name.dot(rand_int(minimum,maximum))
             
 def target_board(t_name):
     t_name.dot(610,"black")
@@ -379,14 +379,14 @@ def splat(t,num):
     for i in range(num):
         for ii in range(num):
             star(t,colour="yellow",size=100,width=50)
-            t.forward(duckint(30,60))
-            t.right(360/num+duckint(1,10))
+            t.forward(rand_int(30,60))
+            t.right(360/num+rand_int(1,10))
         t.forward(num*i)
         for iii in range(num):
             star(t,colour="yellow",size=100,width=50)
             t.forward(num*10)
-            t.right(360/num+duckint(1,10))
-        t.right(3**i*duckint(1,10))
+            t.right(360/num+rand_int(1,10))
+        t.right(3**i*rand_int(1,10))
     
 def pizza(t,x=0,y=0,size=1):
     t.penup()
@@ -399,9 +399,9 @@ def pizza(t,x=0,y=0,size=1):
     t.colour("yellow")
     t.dot(28*size)
     t.colour("red")
-    for i in range(duckint(10,15)):
-        t.goto(duckint(x+-100,x+100),duckint(y+-100,y+100))
-        t.dot(duckint(25,30))
+    for i in range(rand_int(10,15)):
+        t.goto(rand_int(x+-100,x+100),rand_int(y+-100,y+100))
+        t.dot(rand_int(25,30))
     t.goto(x,y)
     t.colour("white")
     t.pendown()
