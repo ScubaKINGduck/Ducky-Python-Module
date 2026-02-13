@@ -328,7 +328,7 @@ class Chatbot:
         elif score[3] > score[0] and score[3] > score[1] and score[3] > score[2] and score[3] > score[4]:
             return "How may I assist you?"
         elif score[4] > score[0] and score[4] > score[1] and score[4] > score[2] and score[4] > score[3]:
-            return f"Locational data:\n{locate()}"
+            return f"Your current coordinates are:\n{get_coords()}"
         return None
 
     def reply_test(self):
