@@ -116,7 +116,7 @@ def find_total(number,condition=None): #adds all numbers below it that meet a ce
             total += n
     return total
     
-def ask(url):
+def ask_url(url):
     return requests.get(url)
 
 def ask_json(url):
