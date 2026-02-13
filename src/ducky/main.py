@@ -21,7 +21,7 @@ def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified pos
             if errors:
                 print(e)
     else:
-        print(f"Mat:\t{mat}\nX:\t{x}\nY:\t{y}")
+        print(f"Lengths aren't equal: Mat Rows: {len(mat)}, X: {len(x)}, Y: {len(y)}")
     return mat
 
 def scan(mat,condition=1): #returns all locations that meet a certain condition
