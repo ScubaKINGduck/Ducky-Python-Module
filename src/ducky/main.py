@@ -103,7 +103,7 @@ def array(lst):
 
 def calc(param):
     try:
-        return eval(param)
+        return ast.literal_eval(param)
     except (ValueError,SyntaxError) as e:
         return e
 
