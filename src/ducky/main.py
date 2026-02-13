@@ -105,6 +105,7 @@ def calc(param):
     try:
         return ast.literal_eval(param)
     except (ValueError,SyntaxError) as e:
+        print(f"Error evaluating expression: {e}")
         return e
 
 def find_total(number,condition=None): #adds all numbers below it that meet a certain condition
