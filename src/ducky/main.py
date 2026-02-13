@@ -5,6 +5,7 @@ from tkinter import simpledialog
 from turtle import Turtle
 from nltk.tokenize import word_tokenize
 from nltk.stem import LancasterStemmer
+logging.basicConfig(level=logging.INFO)
 
 #matrix functions
 
