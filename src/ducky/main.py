@@ -262,17 +262,20 @@ class TurtleManager:
         self.colours = colours
         if not self.colours:
             self.colours = ["red","green","blue","yellow","white","black","green","purple"]
+
     def colour(self,name=None,index=None):
         if index:
             self.turtle.pencolour(self.colours[index])
         else:
             self.turtle.pencolour(name)
+
     def update(self):
         self.width = self.turtle.width()
         self.rotation = self.turtle.heading()
         self.x = self.turtle.xcor()
         self.y = self.turtle.xcor()
         self.pen_down = self.turtle.isdown()
+
     def change(self,x=False,y=False,rotation=False,rotation_val=None,width=False,width_val=None,pen_state=False):
         if x and y:
             if self.pen_down:
