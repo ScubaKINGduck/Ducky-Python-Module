@@ -225,19 +225,30 @@ class Manage:
         else:
             print("Error, invalid choice:\n")
     def write_to_file(self):
-        with open(self.file,"w") as file:
-            file.write(input(f"What do you want to write to the file?\n"))
+        try:
+            with open(self.file,"w") as file:
+                file.write(input(f"What do you want to write to the file?\n"))
+        except Exception as e:
+            logging.error(f"Failed to write to {self.file}: {e}")
 
     def append_to_file(self):
-        with open(self.file,"a") as file:
-            file.write(input(f"What do you want to append to the file?\n"))
+        try:
+            with open(self.file,"a") as file:
+                file.write(input(f"What do you want to append to the file?\n"))
+        except Exception as e:
+            logging.error(f"Failed to append to {self.file}: {e}")
+            return None
 
     def delete_a_file(self):
         if input("Are you sure ('y') ?:\n") == "y":
             os.remove(self.file)
     def read_from_file(self):
-        with open(self.file,"r") as file:
-            return file.read()
+        try:
+            with open(self.file,"r") as file:
+                return file.read()
+        except Exception as e:
+            logging.error(f"Failed to read from {self.file}: {e}")
+            return None
 
 
 class TurtleManager:
