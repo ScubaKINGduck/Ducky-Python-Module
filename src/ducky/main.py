@@ -300,6 +300,12 @@ class TurtleManager:
             
 class Chatbot:
     def __init__(self,testing_input=None,testing_output=None):
+        self.greetings = None
+        self.farewells = None
+        self.time = None
+        self.help = None
+        self.location = None
+        self.user_input = None
         self.testing_input = testing_input
         self.testing_output = testing_output
         self.build()
