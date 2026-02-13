@@ -27,11 +27,11 @@ def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified pos
 def scan(mat,condition=1): #returns all locations that meet a certain condition
     x = []
     y = []
-    for yindex,Y in enumerate(mat):
-        for xindex,X in enumerate(mat[yindex]):
+    for y_index,Y in enumerate(mat):
+        for x_index,X in enumerate(mat[y_index]):
             if X == condition:
-                x.append(xindex)
-                y.append(yindex)
+                x.append(x_index)
+                y.append(y_index)
     return x,y
 
 def shift(mat,x,y,x_shift,y_shift=0):
