@@ -72,3 +72,4 @@ dmypy.json
 .venv/
 
 /.gitignore
+test.py
