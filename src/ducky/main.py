@@ -1693,14 +1693,6 @@ class TurtleScreen(TurtleScreenBase):
         fun -- a function with two arguments, the coordinates of the
                clicked point on the canvas.
         btn -- the number of the mouse-button, defaults to 1
-
-        Example (for a TurtleScreen instance named screen)
-
-        >>> screen.onclick(goto)
-        >>> # Subsequently clicking into the TurtleScreen will
-        >>> # make the turtle move to the clicked point.
-        >>> screen.onclick(None)
-        """
         self._onscreenclick(fun, btn, add)
 
     def onkey(self, fun, key):
