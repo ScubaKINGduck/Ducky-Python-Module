@@ -73,3 +73,4 @@ dmypy.json
 
 /.gitignore
 test.py
+/Tests.ipynb
