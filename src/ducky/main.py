@@ -1687,12 +1687,6 @@ class TurtleScreen(TurtleScreenBase):
         return sorted(self._shapes.keys())
 
     def onclick(self, fun, btn=1, add=None):
-        """Bind fun to mouse-click event on canvas.
-
-        Arguments:
-        fun -- a function with two arguments, the coordinates of the
-               clicked point on the canvas.
-        btn -- the number of the mouse-button, defaults to 1
         self._onscreenclick(fun, btn, add)
 
     def onkey(self, fun, key):
@@ -1704,15 +1698,6 @@ class TurtleScreen(TurtleScreenBase):
 
         In order to be able to register key-events, TurtleScreen
         must have focus. (See method listen.)
-
-        Example (for a TurtleScreen instance named screen):
-
-        >>> def f():
-        ...     fd(50)
-        ...     lt(60)
-        ...
-        >>> screen.onkey(f, "Up")
-        >>> screen.listen()
 
         Subsequently the turtle can be moved by repeatedly pressing
         the up-arrow key, consequently drawing a hexagon
@@ -1739,13 +1724,6 @@ class TurtleScreen(TurtleScreenBase):
         Example (for a TurtleScreen instance named screen
         and a Turtle instance named turtle):
 
-        >>> def f():
-        ...     fd(50)
-        ...     lt(60)
-        ...
-        >>> screen.onkeypress(f, "Up")
-        >>> screen.listen()
-
         Subsequently the turtle can be moved by repeatedly pressing
         the up-arrow key, or by keeping pressed the up-arrow key.
         consequently drawing a hexagon.
@@ -1764,8 +1742,6 @@ class TurtleScreen(TurtleScreenBase):
         Dummy arguments are provided in order
         to be able to pass listen to the onclick method.
 
-        Example (for a TurtleScreen instance named screen):
-        >>> screen.listen()
         """
         self._listen()
 
@@ -1776,17 +1752,6 @@ class TurtleScreen(TurtleScreenBase):
         fun -- a function with no arguments.
         t -- a number >= 0
 
-        Example (for a TurtleScreen instance named screen):
-
-        >>> running = True
-        >>> def f():
-        ...     if running:
-        ...             fd(50)
-        ...             lt(60)
-        ...             screen.ontimer(f, 250)
-        ...
-        >>> f()   # makes the turtle marching around
-        >>> running = False
         """
         self._ontimer(fun, t)
 
@@ -1800,12 +1765,6 @@ class TurtleScreen(TurtleScreenBase):
         If picname is "nopic", delete backgroundimage, if present.
         If picname is None, return the filename of the current backgroundimage.
 
-        Example (for a TurtleScreen instance named screen):
-        >>> screen.bgpic()
-        'nopic'
-        >>> screen.bgpic("landscape.gif")
-        >>> screen.bgpic()
-        'landscape.gif'
         """
         if picname is None:
             return self._bgpicname
@@ -1827,9 +1786,6 @@ class TurtleScreen(TurtleScreenBase):
         the canvas use the scrollbars. (Can make visible those parts
         of a drawing, which were outside the canvas before!)
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.screensize(2000,1500)
-        >>> # e.g. to search for an erroneously escaped turtle ;-)
         """
         return self._resize(canvwidth, canvheight, bg)
 
@@ -1902,17 +1858,6 @@ class TNavigator(object):
         Set angle measurement units, i. e. set number
         of 'degrees' for a full circle. Default value is
         360 degrees.
-
-        Example (for a Turtle instance named turtle):
-        >>> turtle.left(90)
-        >>> turtle.heading()
-        90
-
-        Change angle measurement unit to grad (also known as gon,
-        grade, or gradian and equals 1/100-th of the right angle.)
-        >>> turtle.degrees(400.0)
-        >>> turtle.heading()
-        100
 
         """
         self._setDegreesPerAU(fullcircle)
