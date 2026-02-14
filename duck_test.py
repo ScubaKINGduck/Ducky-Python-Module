@@ -5,7 +5,6 @@ class Tester:
     def average(cls):
         total_success = 0
         total_errors = 0
-        total_tests = 0
         for instance in cls._instances:
             total_success += len(instance.success)
             total_errors += len(instance.errors)
@@ -187,8 +186,8 @@ full_timer.stop()
 print(f"\033[35mCompleted all tests in {full_timer.elapsed()} seconds")
 print_average()
 print("\033[0m")
-avg = Tester.average()
-if avg < 100:
+average = Tester.average()
+if average < 100:
     print("Tests failed - Check output above.")
     exit(1)
 else:

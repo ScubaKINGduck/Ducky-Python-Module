@@ -616,7 +616,7 @@ class Vec2D(tuple):
         c, s = math.cos(angle), math.sin(angle)
         return Vec2D(self[0]*c+perp[0]*s, self[1]*c+perp[1]*s)
     def __getnewargs__(self):
-        return (self[0], self[1])
+        return self[0], self[1]
     def __repr__(self):
         return "(%.2f,%.2f)" % self
 
@@ -1241,11 +1241,6 @@ class Shape(object):
         call (for a Shapeobject namend s):
         --   s.addcomponent(((0,0), (10,10), (-10,10)), "red", "blue")
 
-        Example:
-        >>> poly = ((0,0),(10,-5),(0,10),(-10,-5))
-        >>> s = Shape("compound")
-        >>> s.addcomponent(poly, "red", "blue")
-        >>> # .. add more components and then use register_shape()
         """
         if self._type != "compound":
             raise TurtleGraphicsError("Cannot add component to %s Shape"
@@ -1285,7 +1280,7 @@ class Tbuffer(object):
             else:
                 self.buffer[self.ptr] = [None]
                 self.ptr = (self.ptr - 1) % self.bufsize
-                return (item)
+                return item
     def nr_of_items(self):
         return self.bufsize - self.buffer.count([None])
     def __repr__(self):
@@ -1867,12 +1862,6 @@ class TNavigator(object):
 
         No arguments.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.heading()
-        90
-        >>> turtle.radians()
-        >>> turtle.heading()
-        1.5707963267948966
         """
         self._setDegreesPerAU(math.tau)
 
@@ -1901,15 +1890,6 @@ class TNavigator(object):
         Move the turtle forward by the specified distance, in the direction
         the turtle is headed.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.position()
-        (0.00, 0.00)
-        >>> turtle.forward(25)
-        >>> turtle.position()
-        (25.00,0.00)
-        >>> turtle.forward(-75)
-        >>> turtle.position()
-        (-50.00,0.00)
         """
         self._go(distance)
 
@@ -1924,12 +1904,6 @@ class TNavigator(object):
         Move the turtle backward by distance, opposite to the direction the
         turtle is headed. Do not change the turtle's heading.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.position()
-        (0.00, 0.00)
-        >>> turtle.backward(30)
-        >>> turtle.position()
-        (-30.00, 0.00)
         """
         self._go(-distance)
 
@@ -1945,12 +1919,6 @@ class TNavigator(object):
         but can be set via the degrees() and radians() functions.)
         Angle orientation depends on mode. (See this.)
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.heading()
-        22.0
-        >>> turtle.right(45)
-        >>> turtle.heading()
-        337.0
         """
         self._rotate(-angle)
 
@@ -1966,12 +1934,6 @@ class TNavigator(object):
         but can be set via the degrees() and radians() functions.)
         Angle orientation depends on mode. (See this.)
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.heading()
-        22.0
-        >>> turtle.left(45)
-        >>> turtle.heading()
-        67.0
         """
         self._rotate(angle)
 
@@ -1982,9 +1944,6 @@ class TNavigator(object):
 
         No arguments.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.pos()
-        (0.00, 240.00)
         """
         return self._position
 
@@ -1993,12 +1952,6 @@ class TNavigator(object):
 
         No arguments.
 
-        Example (for a Turtle instance named turtle):
-        >>> reset()
-        >>> turtle.left(60)
-        >>> turtle.forward(100)
-        >>> print turtle.xcor()
-        50.0
         """
         return self._position[0]
 
@@ -2007,12 +1960,6 @@ class TNavigator(object):
         ---
         No arguments.
 
-        Example (for a Turtle instance named turtle):
-        >>> reset()
-        >>> turtle.left(60)
-        >>> turtle.forward(100)
-        >>> print turtle.ycor()
-        86.6025403784
         """
         return self._position[1]
 
@@ -2033,19 +1980,6 @@ class TNavigator(object):
         Move turtle to an absolute position. If the pen is down,
         a line will be drawn. The turtle's orientation does not change.
 
-        Example (for a Turtle instance named turtle):
-        >>> tp = turtle.pos()
-        >>> tp
-        (0.00, 0.00)
-        >>> turtle.setpos(60,30)
-        >>> turtle.pos()
-        (60.00,30.00)
-        >>> turtle.setpos((20,80))
-        >>> turtle.pos()
-        (20.00,80.00)
-        >>> turtle.setpos(tp)
-        >>> turtle.pos()
-        (0.00,0.00)
         """
         if y is None:
             self._goto(Vec2D(*x))
@@ -2060,8 +1994,6 @@ class TNavigator(object):
         Move turtle to the origin - coordinates (0,0) and set its
         heading to its start-orientation (which depends on mode).
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.home()
         """
         self.goto(0, 0)
         self.setheading(0)
@@ -2075,12 +2007,6 @@ class TNavigator(object):
         Set the turtle's first coordinate to x, leave second coordinate
         unchanged.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.position()
-        (0.00, 240.00)
-        >>> turtle.setx(10)
-        >>> turtle.position()
-        (10.00, 240.00)
         """
         self._goto(Vec2D(x, self._position[1]))
 
@@ -2093,12 +2019,6 @@ class TNavigator(object):
         Set the turtle's first coordinate to x, second coordinate remains
         unchanged.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.position()
-        (0.00, 40.00)
-        >>> turtle.sety(-10)
-        >>> turtle.position()
-        (0.00, -10.00)
         """
         self._goto(Vec2D(self._position[0], y))
 
@@ -2114,15 +2034,6 @@ class TNavigator(object):
         --or: distance(vec)          # e.g. as returned by pos()
         --or: distance(mypen)        # where mypen is another turtle
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.pos()
-        (0.00, 0.00)
-        >>> turtle.distance(30,40)
-        50.0
-        >>> pen = Turtle()
-        >>> pen.forward(77)
-        >>> turtle.distance(pen)
-        77.0
         """
         if y is not None:
             pos = Vec2D(x, y)
@@ -2150,11 +2061,6 @@ class TNavigator(object):
         specified by x, y and the turtle's start orientation. (Depends on
         modes - "standard" or "logo")
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.pos()
-        (10.00, 10.00)
-        >>> turtle.towards(0,0)
-        225.0
         """
         if y is not None:
             pos = Vec2D(x, y)
@@ -2174,10 +2080,6 @@ class TNavigator(object):
 
         No arguments.
 
-        Example (for a Turtle instance named turtle):
-        >>> turtle.left(67)
-        >>> turtle.heading()
-        67.0
         """
         x, y = self._orient
         result = round(math.degrees(math.atan2(y, x)), 10) % 360.0
