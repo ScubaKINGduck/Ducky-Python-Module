@@ -11,7 +11,6 @@ from .main import (
     move,
     clear_matrix,
     render,
-    IndependentTimer,
     Chatbot,
     Manage,
     rand_int,
