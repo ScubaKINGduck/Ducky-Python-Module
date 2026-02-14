@@ -485,7 +485,6 @@ _tg_turtle_functions = ['back', 'backward', 'begin_fill', 'begin_poly', 'bk',
         'write', 'xcor', 'ycor']
 _tg_utilities = ['write_docstringdict', 'done']
 
-
 _alias_list = ['addshape', 'backward', 'bk', 'fd', 'ht', 'lt', 'pd', 'pos',
                'pu', 'rt', 'seth', 'setpos', 'setposition', 'st',
                'turtlesize', 'up', 'width']
