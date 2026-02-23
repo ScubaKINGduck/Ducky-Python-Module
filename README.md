@@ -1,7 +1,14 @@
 # Ducky-Python-Module
 A collection of tools for python  
-Still in progress but it will be releasing fully soon  
+Still in progress and will be releasing fully soon  
 Credit:  
 Turtle library has been used and modified. I did not make it and I did include the text from the original library explaining rights to the Turtle program which I am not allowed to remove.
 Nltk has been imported but not modified.
-And a few other libraries which I'll mention when this is complete
+Full import list:  
+import random, time, os, tkinter as TK, types, math, inspect, sys, requests, json, numpy, ast, logging
+from os.path import isfile, split, join
+from copy import deepcopy
+from tkinter import simpledialog
+from turtle import Turtle
+from nltk.tokenize import word_tokenize
+from nltk.stem import LancasterStemmer
