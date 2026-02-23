@@ -102,6 +102,15 @@ def stem(string):
 def array(lst):
     return numpy.array(lst)
 
+def dot_product(mat1,mat2):
+    return numpy.dot(mat1,mat2)
+
+def scale_matrices(mat,val):
+    return mat*val
+
+def average_matrices(mat):
+    return numpy.average(mat)
+
 def calc(param):
     try:
         return ast.literal_eval(param)
