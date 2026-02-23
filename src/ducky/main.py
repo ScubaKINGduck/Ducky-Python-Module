@@ -1158,13 +1158,7 @@ class TurtleScreenBase(object):
         return self.cv.type(item)
 
     def _pointlist(self, item):
-        """returns list of coordinate-pairs of points of item
-        Example (for insiders):
-        >>> from turtle import *
-        >>> getscreen()._pointlist(getturtle().turtle._item)
-        [(0.0, 9.9999999999999982), (0.0, -9.9999999999999982),
-        (9.9999999999999982, 0.0)]
-        >>> """
+        #returns list of coordinate-pairs of points of item
         cl = self.cv.coords(item)
         pl = [(cl[i], -cl[i+1]) for i in range(0, len(cl), 2)]
         return  pl
