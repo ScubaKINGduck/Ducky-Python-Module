@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
 
     ducky.wait(20)
-    #turtle function test
+    #turtle functions test
     start = time.perf_counter()
     Test2 = Tester()
 
