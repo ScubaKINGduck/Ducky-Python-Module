@@ -122,7 +122,7 @@ if __name__ == "__main__":
     end = time.perf_counter()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test4.results()
-    #TODO add more tests for all the classes
+    #TODO add more tests for individual functions
     full_timer.stop()
     print(f"\033[35mCompleted all tests in {full_timer.elapsed()} seconds")
     print_average()
