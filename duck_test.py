@@ -51,7 +51,7 @@ if __name__ == "__main__":
     Test1.test("import ducky","Import ducky")
 
     hide_turtle_window()
-    t=ducky.Turtle()
+    Test1.test("t=ducky.Turtle()","Create turtle")
 
     Test1.test("t.speed(0)","Set turtle speed")
     Test1.test("duck=ducky.TurtleManager(t)","Instantiate TurtleManager class")
@@ -115,8 +115,8 @@ if __name__ == "__main__":
     start = time.perf_counter()
     Test4 = Tester()
 
-    inputs = ["hello there","bye"]
-    outputs = ["Hello","Bye then"]
+    Test4.test("inputs = ['hello there','bye']","Create inputs list")
+    Test4.test("outputs = ['Hello','Bye then']","Create outputs list")
     Test4.test("chat=ducky.Chatbot(inputs,outputs)","Initialise a chatbot object")
     Test4.test("5/(chat.reply_test())","Test outputs")
     end = time.perf_counter()
