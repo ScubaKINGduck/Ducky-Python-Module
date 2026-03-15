@@ -432,6 +432,221 @@ class Chatbot:
             return 1
         return None
 
+
+#AI TEMPLATE
+
+import mnist
+import numpy
+import abc
+
+class ActivationFunction:
+    tanh = 0
+    sigmoid = 1
+    softmax = 2
+    @staticmethod
+    def __tanh(x: numpy.ndarray) -> numpy.ndarray:
+        return numpy.tanh(x)
+
+    @staticmethod
+    def __tanh_derivative(x: numpy.ndarray) -> numpy.ndarray:
+        return 1 - numpy.tanh(x) ** 2
+
+    @staticmethod
+    def use_tanh():
+        return ActivationFunction.tanh, ActivationFunction.__tanh, ActivationFunction.__tanh_derivative
+
+    @staticmethod
+    def __sigmoid(x):
+        return 1 / (1 + numpy.exp(-x))
+
+    @staticmethod
+    def __sigmoid_derivative(x):
+        s = 1 / (1 + numpy.exp(-x))
+        return s * (1 - s)
+
+    @staticmethod
+    def use_sigmoid():
+        return ActivationFunction.sigmoid, ActivationFunction.__sigmoid, ActivationFunction.__sigmoid_derivative
+
+    @staticmethod
+    def __softmax(x):
+        x = numpy.array(x)
+        e_x = numpy.exp(x - numpy.max(x))
+        return e_x / e_x.sum(axis=-1, keepdims=True)
+
+    @staticmethod
+    def __softmax_derivative(s):
+        s = s.reshape(-1, 1)
+        return numpy.diagflat(s) - numpy.dot(s, s.T)
+
+    @staticmethod
+    def use_softmax():
+        return ActivationFunction.softmax, ActivationFunction.__softmax, ActivationFunction.__softmax_derivative
+
+
+class CostFunctions:
+    mse = 0
+    cross_entropy = 1
+    @staticmethod
+    def __mean_squared_error(actual: numpy.ndarray, predicted: numpy.ndarray):
+        return numpy.mean(numpy.power((actual - predicted), 2))
+
+    @staticmethod
+    def __mean_squared_error_derivative(actual: numpy.ndarray, predicted: numpy.ndarray) -> numpy.ndarray:
+        return 2 * (predicted - actual)/actual.size
+
+    @staticmethod
+    def use_mean_squared_error():
+        return CostFunctions.mse, CostFunctions.__mean_squared_error, CostFunctions.__mean_squared_error_derivative
+
+    @staticmethod
+    def __categorical_cross_entropy(actual: numpy.ndarray, predicted: numpy.ndarray):
+        epsilon = 1e-12
+        predicted = numpy.clip(predicted, epsilon, 1. - epsilon)
+        return -numpy.mean(numpy.sum(actual * numpy.log(predicted), axis=1))
+
+    @staticmethod
+    def __categorical_cross_entropy_derivative(actual: numpy.ndarray, predicted: numpy.ndarray):
+        return (predicted - actual) / actual.shape[0]
+
+    @staticmethod
+    def use_categorical_cross_entropy():
+        return CostFunctions.cross_entropy, CostFunctions.__categorical_cross_entropy, CostFunctions.__categorical_cross_entropy_derivative
+
+class Layer(abc.ABC):
+    def __init__(self):
+        self.input = None
+        self.output = None
+
+    @abc.abstractmethod
+    def feed_forward(self, inputs: numpy.ndarray) -> numpy.ndarray:
+        pass
+
+    @abc.abstractmethod
+    def back_propagate(self, error: numpy.ndarray, learning_rate: float) -> numpy.ndarray:
+        pass
+
+class FullyConnectedLayer(Layer):
+    def __init__(self, input_size: int, output_size: int):
+        super().__init__()
+        random_bound = 1.0 / numpy.sqrt(input_size)
+        self.weights = numpy.random.uniform(-random_bound, random_bound, (input_size, output_size))
+        self.bias = numpy.zeros((1, output_size))
+
+    def feed_forward(self, inputs: numpy.ndarray) -> numpy.ndarray:
+        self.input = inputs
+        self.output = numpy.dot(inputs, self.weights) + self.bias
+        return self.output
+
+
+    def back_propagate(self, error: numpy.ndarray, learning_rate: float) -> numpy.ndarray:
+        input_error = numpy.dot(error, self.weights.T)
+        weights_error = numpy.dot(self.input.T, error)
+        self.weights -= learning_rate * weights_error
+        self.bias -= learning_rate * numpy.mean(error, axis=0, keepdims=True)
+        return input_error
+
+
+class ActivationLayer(Layer):
+    def __init__(self, ID, activation_function, activation_derivative):
+        super().__init__()
+        self.ID = ID
+        self.activation_function = activation_function
+        self.activation_derivative = activation_derivative
+
+    def feed_forward(self, inputs: numpy.ndarray) -> numpy.ndarray:
+        self.input = inputs
+        self.output = self.activation_function(inputs)
+        return self.output
+
+    def back_propagate(self, error: numpy.ndarray, learning_rate: float) -> numpy.ndarray:
+        if self.ID == ActivationFunction.softmax:
+            return error
+        else:
+            return self.activation_derivative(self.input) * error
+
+class NeuralNetwork:
+    def __init__(self, ID, cost_function, cost_derivative):
+        self.ID = ID
+        self.layers = []
+        self.cost_function = cost_function
+        self.cost_derivative = cost_derivative
+
+    def add_layer(self, layer: Layer):
+        self.layers.append(layer)
+
+    def predict(self, inputs: numpy.ndarray) -> numpy.ndarray:
+        for layer in self.layers:
+            inputs = layer.feed_forward(inputs)
+        return inputs
+
+    def train(self, inputs: numpy.ndarray, outputs: numpy.ndarray, n_epochs: int, batch_size: int, learning_rate: float):
+        for epoch in range(n_epochs):
+            batch_index = 0
+            while batch_index < inputs.shape[0]:
+                if batch_index + batch_size < inputs.shape[0]:
+                    output = inputs[batch_index:batch_index + batch_size, ]
+                    actual = outputs[batch_index:batch_index + batch_size, ]
+                else:
+                    output = inputs[batch_index:, ]
+                    actual = outputs[batch_index:, ]
+                output = self.predict(output)
+                cost = self.cost_function(actual, output)
+                error = self.cost_derivative(actual, output)
+                for layer in reversed(self.layers):
+                    error = layer.back_propagate(error, learning_rate)
+                print(f"Epoch: {epoch+1}/{n_epochs} | Batch: {batch_index}/{inputs.shape[0]} | Cost: {cost}")
+                batch_index += batch_size
+
+    def save(self, path: str):
+        with open(f"{path}.nn", "w") as save_file:
+            save_file.write(f"{self.ID}\n")
+            for index, layer in enumerate(self.layers):
+                if isinstance(layer, FullyConnectedLayer):
+                    save_file.write(f"F|{index}|{layer.weights.shape[0]}|{layer.weights.shape[1]}\n")
+                    numpy.save(f"{path}_{index}_w", layer.weights)
+                    numpy.save(f"{path}_{index}_b", layer.bias)
+                elif isinstance(layer, ActivationLayer):
+                    if layer.ID == ActivationFunction.tanh:
+                        save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
+                    elif layer.ID == ActivationFunction.sigmoid:
+                        save_file.write(f"A|{index}|{ActivationFunction.sigmoid}\n")
+                    elif layer.ID == ActivationFunction.softmax:
+                        save_file.write(f"A|{index}|{ActivationFunction.softmax}\n")
+                    else:
+                        save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
+    @staticmethod
+    def load(path: str):
+        with open(f"{path}.nn", "r") as file:
+            lines = file.readlines()
+        cost_function_id = int(lines[0])
+        if cost_function_id == CostFunctions.mse:
+            neural_network = NeuralNetwork(*CostFunctions.use_mean_squared_error())
+        else:
+            neural_network = NeuralNetwork(*CostFunctions.use_mean_squared_error())
+        for line in lines[1:]:
+            if line != "":
+                parts = line.split("|")
+                if parts[0] == "F":
+                    weights = numpy.load(f"{path}_{parts[1]}_w.npy")
+                    bias = numpy.load(f"{path}_{parts[1]}_b.npy")
+                    layer = FullyConnectedLayer(weights.shape[0], weights.shape[1])
+                    layer.weights = weights
+                    layer.bias = bias
+                    neural_network.add_layer(layer)
+                elif parts[0] == "A":
+                    activation_id = int(parts[2])
+                    if activation_id == ActivationFunction.tanh:
+                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_tanh()))
+                    elif activation_id == ActivationFunction.sigmoid:
+                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_sigmoid()))
+                    elif activation_id == ActivationFunction.softmax:
+                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_softmax()))
+                    else:
+                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_tanh()))
+        return neural_network
+
+
 #turtlel
       
 def dots(turt_name, number, random_colours=True, colours=None, minimum=20, maximum=100):
