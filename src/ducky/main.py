@@ -397,7 +397,7 @@ class Chatbot:
 
     def reply(self,reply_input):
         score = [0, 0, 0, 0, 0]
-        tokens = tokenize(reply_input)
+        tokens = tokenise(reply_input)
         stemmed_words = []
         for token in tokens:
             stemmed_words.append((stem(token)))
