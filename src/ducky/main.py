@@ -1,4 +1,4 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, numpy, ast, logging
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, numpy, ast, logging, ost
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
@@ -598,7 +598,9 @@ class NeuralNetwork:
                 print(f"Epoch: {epoch+1}/{n_epochs} | Batch: {batch_index}/{inputs.shape[0]} | Cost: {cost}")
                 batch_index += batch_size
 
-    def save(self, path: str):
+    def save(self, path: str,location=os.getcwd()):
+        temp = os.getcwd()
+        os.chdir(location)
         with open(f"{path}.nn", "w") as save_file:
             save_file.write(f"{self.ID}\n")
             for index, layer in enumerate(self.layers):
@@ -615,6 +617,7 @@ class NeuralNetwork:
                         save_file.write(f"A|{index}|{ActivationFunction.softmax}\n")
                     else:
                         save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
+        os.chdir(temp)
     @staticmethod
     def load(path: str):
         with open(f"{path}.nn", "r") as file:
