@@ -91,7 +91,7 @@ def current_minute():
 def current_second():
     return time.localtime()[5]
     
-def tokenize(string):
+def tokenise(string):
     tokens = word_tokenize(string)
     return tokens
 
