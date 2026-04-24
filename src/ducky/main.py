@@ -435,9 +435,8 @@ class Chatbot:
 
 #AI TEMPLATE
 
-import mnist
-import cupy
-import abc
+
+
 
 class ActivationFunction:
     tanh = 0
