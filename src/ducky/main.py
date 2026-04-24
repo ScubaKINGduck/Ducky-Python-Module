@@ -436,8 +436,6 @@ class Chatbot:
 #AI TEMPLATE
 
 
-
-
 class ActivationFunction:
     tanh = 0
     sigmoid = 1
