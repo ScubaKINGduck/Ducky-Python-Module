@@ -128,16 +128,16 @@ def stem(string):
     return lancaster.stem(string)
     
 def array(lst):
-    return duckpy.array(lst)
+    return backend().array(lst)
 
 def dot_product(mat1,mat2):
-    return duckpy.dot(mat1,mat2)
+    return backend().dot(mat1,mat2)
 
 def scale_matrices(mat,val):
     return mat*val
 
 def average_matrices(mat):
-    return duckpy.average(mat)
+    return backend().average(mat)
 
 def calc(param):
     try:
@@ -469,12 +469,12 @@ class ActivationFunction:
     sigmoid = 1
     softmax = 2
     @staticmethod
-    def __tanh(x: duckpy.ndarray) -> duckpy.ndarray:
-        return duckpy.tanh(x)
+    def __tanh(x: backend().ndarray) -> backend().ndarray:
+        return backend().tanh(x)
 
     @staticmethod
-    def __tanh_derivative(x: duckpy.ndarray) -> duckpy.ndarray:
-        return 1 - duckpy.tanh(x) ** 2
+    def __tanh_derivative(x: backend().ndarray) -> backend().ndarray:
+        return 1 - backend().tanh(x) ** 2
 
     @staticmethod
     def use_tanh():
@@ -482,11 +482,11 @@ class ActivationFunction:
 
     @staticmethod
     def __sigmoid(x):
-        return 1 / (1 + duckpy.exp(-x))
+        return 1 / (1 + backend().exp(-x))
 
     @staticmethod
     def __sigmoid_derivative(x):
-        s = 1 / (1 + duckpy.exp(-x))
+        s = 1 / (1 + backend().exp(-x))
         return s * (1 - s)
 
     @staticmethod
@@ -495,14 +495,14 @@ class ActivationFunction:
 
     @staticmethod
     def __softmax(x):
-        x = duckpy.array(x)
-        e_x = duckpy.exp(x - duckpy.max(x))
+        x = backend().array(x)
+        e_x = backend().exp(x - backend().max(x))
         return e_x / e_x.sum(axis=-1, keepdims=True)
 
     @staticmethod
     def __softmax_derivative(s):
         s = s.reshape(-1, 1)
-        return duckpy.diagflat(s) - duckpy.dot(s, s.T)
+        return backend().diagflat(s) - backend().dot(s, s.T)
 
     @staticmethod
     def use_softmax():
@@ -513,11 +513,11 @@ class CostFunctions:
     mse = 0
     cross_entropy = 1
     @staticmethod
-    def __mean_squared_error(actual: duckpy.ndarray, predicted: duckpy.ndarray):
-        return duckpy.mean(duckpy.power((actual - predicted), 2))
+    def __mean_squared_error(actual: backend().ndarray, predicted: backend().ndarray):
+        return backend().mean(backend().power((actual - predicted), 2))
 
     @staticmethod
-    def __mean_squared_error_derivative(actual: duckpy.ndarray, predicted: duckpy.ndarray) -> duckpy.ndarray:
+    def __mean_squared_error_derivative(actual: backend().ndarray, predicted: backend().ndarray) -> backend().ndarray:
         return 2 * (predicted - actual)/actual.size
 
     @staticmethod
@@ -525,13 +525,13 @@ class CostFunctions:
         return CostFunctions.mse, CostFunctions.__mean_squared_error, CostFunctions.__mean_squared_error_derivative
 
     @staticmethod
-    def __categorical_cross_entropy(actual: duckpy.ndarray, predicted: duckpy.ndarray):
+    def __categorical_cross_entropy(actual: backend().ndarray, predicted: backend().ndarray):
         epsilon = 1e-12
-        predicted = duckpy.clip(predicted, epsilon, 1. - epsilon)
-        return -duckpy.mean(duckpy.sum(actual * duckpy.log(predicted), axis=1))
+        predicted = backend().clip(predicted, epsilon, 1. - epsilon)
+        return -backend().mean(backend().sum(actual * backend().log(predicted), axis=1))
 
     @staticmethod
-    def __categorical_cross_entropy_derivative(actual: duckpy.ndarray, predicted: duckpy.ndarray):
+    def __categorical_cross_entropy_derivative(actual: backend().ndarray, predicted: backend().ndarray):
         return (predicted - actual) / actual.shape[0]
 
     @staticmethod
@@ -544,31 +544,31 @@ class Layer(abc.ABC):
         self.output = None
 
     @abc.abstractmethod
-    def feed_forward(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
+    def feed_forward(self, inputs: backend().ndarray) -> backend().ndarray:
         pass
 
     @abc.abstractmethod
-    def back_propagate(self, error: duckpy.ndarray, learning_rate: float) -> duckpy.ndarray:
+    def back_propagate(self, error: backend().ndarray, learning_rate: float) -> backend().ndarray:
         pass
 
 class FullyConnectedLayer(Layer):
     def __init__(self, input_size: int, output_size: int):
         super().__init__()
-        random_bound = 1.0 / duckpy.sqrt(input_size)
-        self.weights = duckpy.random.uniform(-random_bound, random_bound, (input_size, output_size))
-        self.bias = duckpy.zeros((1, output_size))
+        random_bound = 1.0 / backend().sqrt(input_size)
+        self.weights = backend().random.uniform(-random_bound, random_bound, (input_size, output_size))
+        self.bias = backend().zeros((1, output_size))
 
-    def feed_forward(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
+    def feed_forward(self, inputs: backend().ndarray) -> backend().ndarray:
         self.input = inputs
-        self.output = duckpy.dot(inputs, self.weights) + self.bias
+        self.output = backend().dot(inputs, self.weights) + self.bias
         return self.output
 
 
-    def back_propagate(self, error: duckpy.ndarray, learning_rate: float) -> duckpy.ndarray:
-        input_error = duckpy.dot(error, self.weights.T)
-        weights_error = duckpy.dot(self.input.T, error)
+    def back_propagate(self, error: backend().ndarray, learning_rate: float) -> backend().ndarray:
+        input_error = backend().dot(error, self.weights.T)
+        weights_error = backend().dot(self.input.T, error)
         self.weights -= learning_rate * weights_error
-        self.bias -= learning_rate * duckpy.mean(error, axis=0, keepdims=True)
+        self.bias -= learning_rate * backend().mean(error, axis=0, keepdims=True)
         return input_error
 
 
@@ -579,12 +579,12 @@ class ActivationLayer(Layer):
         self.activation_function = activation_function
         self.activation_derivative = activation_derivative
 
-    def feed_forward(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
+    def feed_forward(self, inputs: backend().ndarray) -> backend().ndarray:
         self.input = inputs
         self.output = self.activation_function(inputs)
         return self.output
 
-    def back_propagate(self, error: duckpy.ndarray, learning_rate: float) -> duckpy.ndarray:
+    def back_propagate(self, error: backend().ndarray, learning_rate: float) -> backend().ndarray:
         if self.ID == ActivationFunction.softmax:
             return error
         else:
@@ -600,12 +600,12 @@ class NeuralNetwork:
     def add_layer(self, layer: Layer):
         self.layers.append(layer)
 
-    def predict(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
+    def predict(self, inputs: backend().ndarray) -> backend().ndarray:
         for layer in self.layers:
             inputs = layer.feed_forward(inputs)
         return inputs
 
-    def train(self, inputs: duckpy.ndarray, outputs: duckpy.ndarray, n_epochs: int, batch_size: int, learning_rate: float):
+    def train(self, inputs: backend().ndarray, outputs: backend().ndarray, n_epochs: int, batch_size: int, learning_rate: float):
         for epoch in range(n_epochs):
             batch_index = 0
             while batch_index < inputs.shape[0]:
@@ -631,8 +631,8 @@ class NeuralNetwork:
             for index, layer in enumerate(self.layers):
                 if isinstance(layer, FullyConnectedLayer):
                     save_file.write(f"F|{index}|{layer.weights.shape[0]}|{layer.weights.shape[1]}\n")
-                    duckpy.save(f"{path}_{index}_w", layer.weights)
-                    duckpy.save(f"{path}_{index}_b", layer.bias)
+                    backend().save(f"{path}_{index}_w", layer.weights)
+                    backend().save(f"{path}_{index}_b", layer.bias)
                 elif isinstance(layer, ActivationLayer):
                     if layer.ID == ActivationFunction.tanh:
                         save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
@@ -656,8 +656,8 @@ class NeuralNetwork:
             if line != "":
                 parts = line.split("|")
                 if parts[0] == "F":
-                    weights = duckpy.load(f"{path}_{parts[1]}_w.npy")
-                    bias = duckpy.load(f"{path}_{parts[1]}_b.npy")
+                    weights = backend().load(f"{path}_{parts[1]}_w.npy")
+                    bias = backend().load(f"{path}_{parts[1]}_b.npy")
                     layer = FullyConnectedLayer(weights.shape[0], weights.shape[1])
                     layer.weights = weights
                     layer.bias = bias
