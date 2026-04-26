@@ -6,7 +6,9 @@ def set_backend(name: str):
     if name == "numpy":
         import numpy as duckpy
     elif name == "cupy":
-        import cupy as duckpy
+        import cupy as _cupy
+        _backend = _cupy
+
     else:
         raise ValueError("Backend must be numpy or cupy")
 
