@@ -127,16 +127,16 @@ def stem(string):
     return lancaster.stem(string)
     
 def array(lst):
-    return cupy.array(lst)
+    return duckpy.array(lst)
 
 def dot_product(mat1,mat2):
-    return cupy.dot(mat1,mat2)
+    return duckpy.dot(mat1,mat2)
 
 def scale_matrices(mat,val):
     return mat*val
 
 def average_matrices(mat):
-    return cupy.average(mat)
+    return duckpy.average(mat)
 
 def calc(param):
     try:
@@ -468,12 +468,12 @@ class ActivationFunction:
     sigmoid = 1
     softmax = 2
     @staticmethod
-    def __tanh(x: cupy.ndarray) -> cupy.ndarray:
-        return cupy.tanh(x)
+    def __tanh(x: duckpy.ndarray) -> duckpy.ndarray:
+        return duckpy.tanh(x)
 
     @staticmethod
-    def __tanh_derivative(x: cupy.ndarray) -> cupy.ndarray:
-        return 1 - cupy.tanh(x) ** 2
+    def __tanh_derivative(x: duckpy.ndarray) -> duckpy.ndarray:
+        return 1 - duckpy.tanh(x) ** 2
 
     @staticmethod
     def use_tanh():
@@ -481,11 +481,11 @@ class ActivationFunction:
 
     @staticmethod
     def __sigmoid(x):
-        return 1 / (1 + cupy.exp(-x))
+        return 1 / (1 + duckpy.exp(-x))
 
     @staticmethod
     def __sigmoid_derivative(x):
-        s = 1 / (1 + cupy.exp(-x))
+        s = 1 / (1 + duckpy.exp(-x))
         return s * (1 - s)
 
     @staticmethod
@@ -494,14 +494,14 @@ class ActivationFunction:
 
     @staticmethod
     def __softmax(x):
-        x = cupy.array(x)
-        e_x = cupy.exp(x - cupy.max(x))
+        x = duckpy.array(x)
+        e_x = duckpy.exp(x - duckpy.max(x))
         return e_x / e_x.sum(axis=-1, keepdims=True)
 
     @staticmethod
     def __softmax_derivative(s):
         s = s.reshape(-1, 1)
-        return cupy.diagflat(s) - cupy.dot(s, s.T)
+        return duckpy.diagflat(s) - duckpy.dot(s, s.T)
 
     @staticmethod
     def use_softmax():
@@ -512,11 +512,11 @@ class CostFunctions:
     mse = 0
     cross_entropy = 1
     @staticmethod
-    def __mean_squared_error(actual: cupy.ndarray, predicted: cupy.ndarray):
-        return cupy.mean(cupy.power((actual - predicted), 2))
+    def __mean_squared_error(actual: duckpy.ndarray, predicted: duckpy.ndarray):
+        return duckpy.mean(duckpy.power((actual - predicted), 2))
 
     @staticmethod
-    def __mean_squared_error_derivative(actual: cupy.ndarray, predicted: cupy.ndarray) -> cupy.ndarray:
+    def __mean_squared_error_derivative(actual: duckpy.ndarray, predicted: duckpy.ndarray) -> duckpy.ndarray:
         return 2 * (predicted - actual)/actual.size
 
     @staticmethod
@@ -524,13 +524,13 @@ class CostFunctions:
         return CostFunctions.mse, CostFunctions.__mean_squared_error, CostFunctions.__mean_squared_error_derivative
 
     @staticmethod
-    def __categorical_cross_entropy(actual: cupy.ndarray, predicted: cupy.ndarray):
+    def __categorical_cross_entropy(actual: duckpy.ndarray, predicted: duckpy.ndarray):
         epsilon = 1e-12
-        predicted = cupy.clip(predicted, epsilon, 1. - epsilon)
-        return -cupy.mean(cupy.sum(actual * cupy.log(predicted), axis=1))
+        predicted = duckpy.clip(predicted, epsilon, 1. - epsilon)
+        return -duckpy.mean(duckpy.sum(actual * duckpy.log(predicted), axis=1))
 
     @staticmethod
-    def __categorical_cross_entropy_derivative(actual: cupy.ndarray, predicted: cupy.ndarray):
+    def __categorical_cross_entropy_derivative(actual: duckpy.ndarray, predicted: duckpy.ndarray):
         return (predicted - actual) / actual.shape[0]
 
     @staticmethod
@@ -543,31 +543,31 @@ class Layer(abc.ABC):
         self.output = None
 
     @abc.abstractmethod
-    def feed_forward(self, inputs: cupy.ndarray) -> cupy.ndarray:
+    def feed_forward(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
         pass
 
     @abc.abstractmethod
-    def back_propagate(self, error: cupy.ndarray, learning_rate: float) -> cupy.ndarray:
+    def back_propagate(self, error: duckpy.ndarray, learning_rate: float) -> duckpy.ndarray:
         pass
 
 class FullyConnectedLayer(Layer):
     def __init__(self, input_size: int, output_size: int):
         super().__init__()
-        random_bound = 1.0 / cupy.sqrt(input_size)
-        self.weights = cupy.random.uniform(-random_bound, random_bound, (input_size, output_size))
-        self.bias = cupy.zeros((1, output_size))
+        random_bound = 1.0 / duckpy.sqrt(input_size)
+        self.weights = duckpy.random.uniform(-random_bound, random_bound, (input_size, output_size))
+        self.bias = duckpy.zeros((1, output_size))
 
-    def feed_forward(self, inputs: cupy.ndarray) -> cupy.ndarray:
+    def feed_forward(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
         self.input = inputs
-        self.output = cupy.dot(inputs, self.weights) + self.bias
+        self.output = duckpy.dot(inputs, self.weights) + self.bias
         return self.output
 
 
-    def back_propagate(self, error: cupy.ndarray, learning_rate: float) -> cupy.ndarray:
-        input_error = cupy.dot(error, self.weights.T)
-        weights_error = cupy.dot(self.input.T, error)
+    def back_propagate(self, error: duckpy.ndarray, learning_rate: float) -> duckpy.ndarray:
+        input_error = duckpy.dot(error, self.weights.T)
+        weights_error = duckpy.dot(self.input.T, error)
         self.weights -= learning_rate * weights_error
-        self.bias -= learning_rate * cupy.mean(error, axis=0, keepdims=True)
+        self.bias -= learning_rate * duckpy.mean(error, axis=0, keepdims=True)
         return input_error
 
 
@@ -578,12 +578,12 @@ class ActivationLayer(Layer):
         self.activation_function = activation_function
         self.activation_derivative = activation_derivative
 
-    def feed_forward(self, inputs: cupy.ndarray) -> cupy.ndarray:
+    def feed_forward(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
         self.input = inputs
         self.output = self.activation_function(inputs)
         return self.output
 
-    def back_propagate(self, error: cupy.ndarray, learning_rate: float) -> cupy.ndarray:
+    def back_propagate(self, error: duckpy.ndarray, learning_rate: float) -> duckpy.ndarray:
         if self.ID == ActivationFunction.softmax:
             return error
         else:
@@ -599,12 +599,12 @@ class NeuralNetwork:
     def add_layer(self, layer: Layer):
         self.layers.append(layer)
 
-    def predict(self, inputs: cupy.ndarray) -> cupy.ndarray:
+    def predict(self, inputs: duckpy.ndarray) -> duckpy.ndarray:
         for layer in self.layers:
             inputs = layer.feed_forward(inputs)
         return inputs
 
-    def train(self, inputs: cupy.ndarray, outputs: cupy.ndarray, n_epochs: int, batch_size: int, learning_rate: float):
+    def train(self, inputs: duckpy.ndarray, outputs: duckpy.ndarray, n_epochs: int, batch_size: int, learning_rate: float):
         for epoch in range(n_epochs):
             batch_index = 0
             while batch_index < inputs.shape[0]:
@@ -630,8 +630,8 @@ class NeuralNetwork:
             for index, layer in enumerate(self.layers):
                 if isinstance(layer, FullyConnectedLayer):
                     save_file.write(f"F|{index}|{layer.weights.shape[0]}|{layer.weights.shape[1]}\n")
-                    cupy.save(f"{path}_{index}_w", layer.weights)
-                    cupy.save(f"{path}_{index}_b", layer.bias)
+                    duckpy.save(f"{path}_{index}_w", layer.weights)
+                    duckpy.save(f"{path}_{index}_b", layer.bias)
                 elif isinstance(layer, ActivationLayer):
                     if layer.ID == ActivationFunction.tanh:
                         save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
@@ -655,8 +655,8 @@ class NeuralNetwork:
             if line != "":
                 parts = line.split("|")
                 if parts[0] == "F":
-                    weights = cupy.load(f"{path}_{parts[1]}_w.npy")
-                    bias = cupy.load(f"{path}_{parts[1]}_b.npy")
+                    weights = duckpy.load(f"{path}_{parts[1]}_w.npy")
+                    bias = duckpy.load(f"{path}_{parts[1]}_b.npy")
                     layer = FullyConnectedLayer(weights.shape[0], weights.shape[1])
                     layer.weights = weights
                     layer.bias = bias
