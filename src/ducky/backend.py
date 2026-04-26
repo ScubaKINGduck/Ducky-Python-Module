@@ -4,8 +4,8 @@ def set_backend(name: str):
     global _backend
 
     if name == "numpy":
-        import numpy as _numpy
-        _backend = _numpy
+        import numpy
+        _backend = numpy
     elif name == "cupy":
         import cupy as _cupy
         _backend = _cupy
