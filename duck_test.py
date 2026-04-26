@@ -1,4 +1,4 @@
-import ducky,time
+import ducky, time
 from ducky import Tester
 class IndependentTimer:
     def __init__(self):
