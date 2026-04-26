@@ -1,4 +1,4 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, ast, logging, ost, abc
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, ast, logging, abc
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
