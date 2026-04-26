@@ -72,7 +72,34 @@ def render(mat):
     print("------------------------------------------------------")
     
 #my functions
-    
+
+def download_nltk():
+    nltk.download('punkt', quiet=True)
+
+def download_to_path(url, path, file_name, quiet=False):
+    try:
+        r = requests.get(url)
+        r.raise_for_status()
+
+        with open(f"{path}/{file_name}", "wb") as f:
+            f.write(r.content)
+
+    except requests.exceptions.RequestException as e:
+        if not quiet:
+            print("Download failed:", e)
+
+def low_ram_download(url,path,file_name,quiet=False):
+    try:
+        with requests.get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(f"{path}/{file_name}", "wb") as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+    except requests.exceptions.RequestException as e:
+        if not quiet:
+            print("Download failed:", e)
+
 def rand_int(minimum,maximum):
     return random.randint(minimum,maximum)
 
