@@ -4,6 +4,7 @@ from copy import deepcopy
 from tkinter import simpledialog
 from turtle import Turtle
 from nltk.tokenize import word_tokenize
+from .backend import backend
 from nltk.stem import LancasterStemmer
 logging.basicConfig(level=logging.INFO) #still don't know what this is. It was autocompleted
 
