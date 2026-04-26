@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO) #still don't know what this is. It was a
 #matrix functions
 
 def matrix(x,y,fill=0):
-    mat = [[fill for i in range(x)] for a in range(y)]
+    mat = [[fill for _ in range(x)] for _ in range(y)]
     return mat
 
 def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified positions
