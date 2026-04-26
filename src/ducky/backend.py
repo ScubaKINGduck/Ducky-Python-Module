@@ -7,8 +7,8 @@ def set_backend(name: str):
         import numpy
         _backend = numpy
     elif name == "cupy":
-        import cupy as _cupy
-        _backend = _cupy
+        import cupy
+        _backend = cupy
 
     else:
         raise ValueError("Backend must be numpy or cupy")
