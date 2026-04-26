@@ -1,5 +1,5 @@
-_backend = None
-
+import numpy as _numpy
+_backend = _numpy
 def set_backend(name: str):
     global _backend
 
