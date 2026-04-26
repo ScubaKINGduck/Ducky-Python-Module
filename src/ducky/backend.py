@@ -10,4 +10,5 @@ def set_backend(name: str):
     else:
         raise ValueError("Backend must be numpy or cupy")
 
-    _backend = duckpy
+def backend():
+    return _backend
