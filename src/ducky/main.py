@@ -463,79 +463,45 @@ class Chatbot:
 #AI class templates
 
 
-class ActivationFunction:
-    tanh = 0
-    sigmoid = 1
-    softmax = 2
-    @staticmethod
-    def __tanh(x: backend().ndarray) -> backend().ndarray:
-        return backend().tanh(x)
+import abc
+import random
+
+import ducky
+import numpy
+import numpy
+
+
+class ActivationFunctions:
+    TANH = 0
 
     @staticmethod
-    def __tanh_derivative(x: backend().ndarray) -> backend().ndarray:
-        return 1 - backend().tanh(x) ** 2
+    def __tanh(x: numpy.ndarray):
+        return numpy.tanh(x)
+
+    @staticmethod
+    def __tanh_derived(x: numpy.ndarray):
+        return 1 - (numpy.tanh(x) ** 2)
 
     @staticmethod
     def use_tanh():
-        return ActivationFunction.tanh, ActivationFunction.__tanh, ActivationFunction.__tanh_derivative
-
-    @staticmethod
-    def __sigmoid(x):
-        return 1 / (1 + backend().exp(-x))
-
-    @staticmethod
-    def __sigmoid_derivative(x):
-        s = 1 / (1 + backend().exp(-x))
-        return s * (1 - s)
-
-    @staticmethod
-    def use_sigmoid():
-        return ActivationFunction.sigmoid, ActivationFunction.__sigmoid, ActivationFunction.__sigmoid_derivative
-
-    @staticmethod
-    def __softmax(x):
-        x = backend().array(x)
-        e_x = backend().exp(x - backend().max(x))
-        return e_x / e_x.sum(axis=-1, keepdims=True)
-
-    @staticmethod
-    def __softmax_derivative(s):
-        s = s.reshape(-1, 1)
-        return backend().diagflat(s) - backend().dot(s, s.T)
-
-    @staticmethod
-    def use_softmax():
-        return ActivationFunction.softmax, ActivationFunction.__softmax, ActivationFunction.__softmax_derivative
+        return ActivationFunctions.TANH, ActivationFunctions.__tanh, ActivationFunctions.__tanh_derived
 
 
 class CostFunctions:
-    mse = 0
-    cross_entropy = 1
-    @staticmethod
-    def __mean_squared_error(actual: backend().ndarray, predicted: backend().ndarray):
-        return backend().mean(backend().power((actual - predicted), 2))
+    MSE = 0
 
     @staticmethod
-    def __mean_squared_error_derivative(actual: backend().ndarray, predicted: backend().ndarray) -> backend().ndarray:
-        return 2 * (predicted - actual)/actual.size
+    def __mse(actual: numpy.ndarray, prediction: numpy.ndarray):
+        return numpy.mean(numpy.power(actual - prediction, 2))
 
     @staticmethod
-    def use_mean_squared_error():
-        return CostFunctions.mse, CostFunctions.__mean_squared_error, CostFunctions.__mean_squared_error_derivative
+    def __mse_derived(actual: numpy.ndarray, prediction: numpy.ndarray):
+        return (2 * (prediction - actual)) / actual.size
 
     @staticmethod
-    def __categorical_cross_entropy(actual: backend().ndarray, predicted: backend().ndarray):
-        epsilon = 1e-12
-        predicted = backend().clip(predicted, epsilon, 1. - epsilon)
-        return -backend().mean(backend().sum(actual * backend().log(predicted), axis=1))
+    def use_mse():
+        return CostFunctions.MSE, CostFunctions.__mse, CostFunctions.__mse_derived
 
-    @staticmethod
-    def __categorical_cross_entropy_derivative(actual: backend().ndarray, predicted: backend().ndarray):
-        return (predicted - actual) / actual.shape[0]
-
-    @staticmethod
-    def use_categorical_cross_entropy():
-        return CostFunctions.cross_entropy, CostFunctions.__categorical_cross_entropy, CostFunctions.__categorical_cross_entropy_derivative
 
 class Layer(abc.ABC):
     def __init__(self):
@@ -543,135 +509,231 @@ class Layer(abc.ABC):
         self.output = None
 
     @abc.abstractmethod
-    def feed_forward(self, inputs: backend().ndarray) -> backend().ndarray:
+    def feed_forward(self, input_values: numpy.ndarray):
         pass
 
     @abc.abstractmethod
-    def back_propagate(self, error: backend().ndarray, learning_rate: float) -> backend().ndarray:
+    def back_propagate(self, output_error: numpy.ndarray, learning_rate: float):
         pass
+
+    @abc.abstractmethod
+    def copy(self):
+        pass
+
 
 class FullyConnectedLayer(Layer):
     def __init__(self, input_size: int, output_size: int):
-        super().__init__()
-        random_bound = 1.0 / backend().sqrt(input_size)
-        self.weights = backend().random.uniform(-random_bound, random_bound, (input_size, output_size))
-        self.bias = backend().zeros((1, output_size))
+        Layer.__init__(self)
+        random_bound = 1.0 / numpy.sqrt(input_size)
+        self.weights = numpy.random.uniform(-random_bound, random_bound, (input_size, output_size))
+        self.bias = numpy.zeros((1, output_size))
+        self.input_size = input_size
+        self.output_size = output_size
 
-    def feed_forward(self, inputs: backend().ndarray) -> backend().ndarray:
-        self.input = inputs
-        self.output = backend().dot(inputs, self.weights) + self.bias
+    def feed_forward(self, input_values):
+        self.input = input_values
+        self.output = numpy.dot(self.input, self.weights) + self.bias
         return self.output
 
-
-    def back_propagate(self, error: backend().ndarray, learning_rate: float) -> backend().ndarray:
-        input_error = backend().dot(error, self.weights.T)
-        weights_error = backend().dot(self.input.T, error)
-        self.weights -= learning_rate * weights_error
-        self.bias -= learning_rate * backend().mean(error, axis=0, keepdims=True)
+    def back_propagate(self, output_error, learning_rate):
+        input_error = numpy.dot(output_error, self.weights.T)
+        weights_error = numpy.dot(self.input.T, output_error)
+        self.weights -= (learning_rate * weights_error)
+        self.bias -= (learning_rate * numpy.mean(output_error, axis=0, keepdims=True))
         return input_error
+
+    def copy(self):
+        copied_layer = FullyConnectedLayer(self.input_size, self.output_size)
+        weights = self.weights.copy()
+        bias = self.bias.copy()
+        copied_layer.weights = weights
+        copied_layer.bias = bias
+        return copied_layer
 
 
 class ActivationLayer(Layer):
-    def __init__(self, ID, activation_function, activation_derivative):
-        super().__init__()
-        self.ID = ID
-        self.activation_function = activation_function
-        self.activation_derivative = activation_derivative
+    def __init__(self, activation_id, activation, activation_derived):
+        Layer.__init__(self)
+        self.activation_id = activation_id
+        self.activation = activation
+        self.activation_derived = activation_derived
 
-    def feed_forward(self, inputs: backend().ndarray) -> backend().ndarray:
-        self.input = inputs
-        self.output = self.activation_function(inputs)
+    def feed_forward(self, input_values):
+        self.input = input_values
+        self.output = self.activation(self.input)
         return self.output
 
-    def back_propagate(self, error: backend().ndarray, learning_rate: float) -> backend().ndarray:
-        if self.ID == ActivationFunction.softmax:
-            return error
-        else:
-            return self.activation_derivative(self.input) * error
+    def back_propagate(self, output_error, learning_rate):
+        return self.activation_derived(self.input) * output_error
+
+    def copy(self):
+        copied_layer = ActivationLayer(self.activation_id, self.activation, self.activation_derived)
+        return copied_layer
+
 
 class NeuralNetwork:
-    def __init__(self, ID, cost_function, cost_derivative):
-        self.ID = ID
+    def __init__(self, cost_function_id, cost_function, cost_function_derived):
         self.layers = []
+        self.cost_function_id = cost_function_id
         self.cost_function = cost_function
-        self.cost_derivative = cost_derivative
+        self.cost_function_derived = cost_function_derived
 
-    def add_layer(self, layer: Layer):
+    def add_layer(self, layer):
         self.layers.append(layer)
 
-    def predict(self, inputs: backend().ndarray) -> backend().ndarray:
+    def predict(self, input_data):
+        output = input_data
         for layer in self.layers:
-            inputs = layer.feed_forward(inputs)
-        return inputs
+            output = layer.feed_forward(output)
+        return output
 
-    def train(self, inputs: backend().ndarray, outputs: backend().ndarray, n_epochs: int, batch_size: int, learning_rate: float):
+    def train(self, train_input, train_output, n_epochs, batch_size, learning_rate):
         for epoch in range(n_epochs):
             batch_index = 0
-            while batch_index < inputs.shape[0]:
-                if batch_index + batch_size < inputs.shape[0]:
-                    output = inputs[batch_index:batch_index + batch_size, ]
-                    actual = outputs[batch_index:batch_index + batch_size, ]
+            while batch_index < train_input.shape[0]:
+                if batch_index + batch_size < train_input.shape[0]:
+                    output = train_input[batch_index:batch_index + batch_size, ]
+                    actual = train_output[batch_index:batch_index + batch_size, ]
                 else:
-                    output = inputs[batch_index:, ]
-                    actual = outputs[batch_index:, ]
-                output = self.predict(output)
+                    output = train_input[batch_index:, ]
+                    actual = train_output[batch_index:, ]
+                for layer in self.layers:
+                    output = layer.feed_forward(output)
                 cost = self.cost_function(actual, output)
-                error = self.cost_derivative(actual, output)
+                error = self.cost_function_derived(actual, output)
                 for layer in reversed(self.layers):
                     error = layer.back_propagate(error, learning_rate)
-                print(f"Epoch: {epoch+1}/{n_epochs} | Batch: {batch_index}/{inputs.shape[0]} | Cost: {cost}")
+                print(f"Epoch {epoch + 1}/{n_epochs} | Batch = {(batch_index + 1) * batch_size} | Cost = {cost}")
                 batch_index += batch_size
 
-    def save(self, path: str,location=os.getcwd()):
-        temp = os.getcwd()
-        os.chdir(location)
-        with open(f"{path}.nn", "w") as save_file:
-            save_file.write(f"{self.ID}\n")
+    def save(self, file_path):
+        with open(f"{file_path}.nn", "w") as save_file:
+            save_file.write(f"{self.cost_function_id}\n")
             for index, layer in enumerate(self.layers):
                 if isinstance(layer, FullyConnectedLayer):
-                    save_file.write(f"F|{index}|{layer.weights.shape[0]}|{layer.weights.shape[1]}\n")
-                    backend().save(f"{path}_{index}_w", layer.weights)
-                    backend().save(f"{path}_{index}_b", layer.bias)
+                    save_file.write(f"{index}|F|{layer.weights.shape}|{layer.bias.shape}\n")
+                    numpy.save(f"{file_path}_{index}_w", layer.weights)
+                    numpy.save(f"{file_path}_{index}_b", layer.bias)
                 elif isinstance(layer, ActivationLayer):
-                    if layer.ID == ActivationFunction.tanh:
-                        save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
-                    elif layer.ID == ActivationFunction.sigmoid:
-                        save_file.write(f"A|{index}|{ActivationFunction.sigmoid}\n")
-                    elif layer.ID == ActivationFunction.softmax:
-                        save_file.write(f"A|{index}|{ActivationFunction.softmax}\n")
-                    else:
-                        save_file.write(f"A|{index}|{ActivationFunction.tanh}\n")
-        os.chdir(temp)
+                    save_file.write(f"{index}|A|{layer.activation_id}\n")
+
     @staticmethod
-    def load(path: str):
-        with open(f"{path}.nn", "r") as file:
-            lines = file.readlines()
+    def load_from_file(file_path):
+        with open(f"{file_path}.nn", "r") as load_file:
+            lines = load_file.readlines()
         cost_function_id = int(lines[0])
-        if cost_function_id == CostFunctions.mse:
-            neural_network = NeuralNetwork(*CostFunctions.use_mean_squared_error())
+        if cost_function_id == CostFunctions.MSE:
+            neural_network = NeuralNetwork(*CostFunctions.use_mse())
         else:
-            neural_network = NeuralNetwork(*CostFunctions.use_mean_squared_error())
+            neural_network = NeuralNetwork(*CostFunctions.use_mse())
         for line in lines[1:]:
             if line != "":
                 parts = line.split("|")
-                if parts[0] == "F":
-                    weights = backend().load(f"{path}_{parts[1]}_w.npy")
-                    bias = backend().load(f"{path}_{parts[1]}_b.npy")
+                if parts[1] == "F":
+                    weights = numpy.load(f"{file_path}_{int(parts[0])}_w.npy")
+                    bias = numpy.load(f"{file_path}_{int(parts[0])}_b.npy")
                     layer = FullyConnectedLayer(weights.shape[0], weights.shape[1])
                     layer.weights = weights
                     layer.bias = bias
                     neural_network.add_layer(layer)
-                elif parts[0] == "A":
+                elif parts[1] == "A":
                     activation_id = int(parts[2])
-                    if activation_id == ActivationFunction.tanh:
-                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_tanh()))
-                    elif activation_id == ActivationFunction.sigmoid:
-                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_sigmoid()))
-                    elif activation_id == ActivationFunction.softmax:
-                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_softmax()))
+                    if activation_id == ActivationFunctions.TANH:
+                        neural_network.add_layer(ActivationLayer(*ActivationFunctions.use_tanh()))
                     else:
-                        neural_network.add_layer(ActivationLayer(*ActivationFunction.use_tanh()))
+                        neural_network.add_layer(ActivationLayer(*ActivationFunctions.use_tanh()))
         return neural_network
+
+    def copy_network(self):
+        copied_network = NeuralNetwork(self.cost_function_id, self.cost_function, self.cost_function_derived)
+        for layer in self.layers:
+            copied_network.add_layer(layer.copy())
+        return copied_network
+
+
+class Agent:
+    def __init__(self):
+        self.gamma = 0.99
+
+
+class QTable:
+    def __init__(self, state, actions):
+        self.table = numpy.zeros((state,actions))
+        self.actions = actions
+        self.state = state
+
+    def update_table(self, state_row, action, value):
+        self.table[state_row, action] += value
+
+    def get_action(self, state_row):
+        return numpy.argmax(self.table[state_row])
+
+
+class QTableAgent(Agent):
+    def __init__(self, table, num_possible_values):
+        Agent.__init__(self)
+        self.table = table
+        self.num_possible_values = num_possible_values
+        self.epsilon = 1
+
+    def state_to_row(self,state):
+        return int("".join([str(s) for s in state.astype(int)]), self.num_possible_values)
+
+    def predict(self, state):
+        self.epsilon *= 0.99
+        if random.random() > self.epsilon:
+            return self.table.get_action(self.state_to_row(state))
+        else:
+            return random.randint(0,self.table.actions-1)
+
+    def train(self, state, action, reward):
+        self.table.update_table(self.state_to_row(state), action, reward)
+
+
+class DeepQAgent(Agent):
+    def __init__(self, layer_sizes):
+        Agent.__init__(self)
+        self.memory = Memory()
+        self.neural_network = NeuralNetwork(*CostFunctions.use_mse())
+        for i, size in enumerate(layer_sizes[:-1]):
+            self.neural_network.add_layer(FullyConnectedLayer(size, layer_sizes[i+1]))
+            self.neural_network.add_layer(ActivationLayer(*ActivationFunctions.use_tanh()))
+
+    def predict(self, state):
+        return int(self.neural_network.predict(state)[0].argmax())
+
+    def train(self, discount_rate):
+        training_input_data = []
+        training_output_data = []
+        for i in range(len(self.memory.states)):
+            prediction = self.neural_network.predict(self.memory.states[i])
+            prediction[0] += self.memory.rewards[i - 1]
+            if i > 0:
+                prediction[0] += self.memory.rewards[i-1] * discount_rate
+        training_input_data = numpy.array(training_input_data)
+        training_output_data = numpy.array(training_output_data)
+        self.neural_network.train(training_input_data, training_output_data, n_epochs=500, batch_size=10, learning_rate=0.1)
+
+
+    def update_memory(self, state, action, reward):
+        self.memory.update(state, action, reward)
+
+
+class Memory:
+    def __init__(self):
+        self.states = []
+        self.actions = []
+        self.rewards = []
+
+    def update(self, state, action, reward):
+        self.states.append(state)
+        self.actions.append(action)
+        self.rewards.append(reward)
+
+    def clear(self):
+        self.states = []
+        self.actions = []
+        self.rewards = []
 
 
 #turtlel
