@@ -460,7 +460,7 @@ class Chatbot:
         return None
 
 
-#AI TEMPLATE
+#AI class templates
 
 
 class ActivationFunction:
