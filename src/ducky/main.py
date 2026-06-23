@@ -713,7 +713,11 @@ class DeepQAgent(Agent):
         training_input_data = numpy.array(training_input_data)
         training_output_data = numpy.array(training_output_data)
         self.neural_network.train(training_input_data, training_output_data, n_epochs=500, batch_size=10, learning_rate=0.1)
-
+        if self.counter >= 10:
+            self.neural_network.save("deepq-nn")
+            self.counter = 0
+        else:
+            self.counter += 1
 
     def update_memory(self, state, action, reward):
         self.memory.update(state, action, reward)
