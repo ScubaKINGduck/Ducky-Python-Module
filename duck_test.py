@@ -127,7 +127,7 @@ if __name__ == "__main__":
     start = ducky.get_time()
     Test5 = Tester()
 
-    Test5.test("nn = NeuralNetwork()","Create inputs list")
+    Test5.test("nn = ducky.NeuralNetwork(*ducky.CostFunctions.use_mse())","Initialise a NeuralNetwork object")
     end = ducky.get_time()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test5.results()
