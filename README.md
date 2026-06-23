@@ -1,5 +1,5 @@
 # Ducky-Python-Module
-A collection of tools for python  
+A collection of QOL and specialised tools for python  
 Still in progress and will be releasing fully soon  
 Credit:  
 Turtle library has been used and modified. I did not make it and I did include the text from the original library explaining rights to the Turtle program which I am not allowed to remove.
