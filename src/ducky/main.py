@@ -694,10 +694,14 @@ class DeepQAgent(Agent):
     def __init__(self, layer_sizes):
         Agent.__init__(self)
         self.memory = Memory()
-        self.neural_network = NeuralNetwork(*CostFunctions.use_mse())
-        for i, size in enumerate(layer_sizes[:-1]):
-            self.neural_network.add_layer(FullyConnectedLayer(size, layer_sizes[i+1]))
-            self.neural_network.add_layer(ActivationLayer(*ActivationFunctions.use_tanh()))
+        self.counter = 0
+        try:
+            self.neural_network = NeuralNetwork.load_from_file("deepq-nn")
+        except FileNotFoundError:
+            self.neural_network = NeuralNetwork(*CostFunctions.use_mse())
+            for i, size in enumerate(layer_sizes[:-1]):
+                self.neural_network.add_layer(FullyConnectedLayer(size, layer_sizes[i+1]))
+                self.neural_network.add_layer(ActivationLayer(*ActivationFunctions.use_tanh()))
 
     def predict(self, state):
         return int(self.neural_network.predict(state)[0].argmax())
