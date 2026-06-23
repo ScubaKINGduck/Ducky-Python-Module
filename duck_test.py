@@ -58,14 +58,14 @@ if __name__ == "__main__":
     Test1.test("for i in duck.colours:\n\tduck.colour(i)\n\tt.penup()\n\tt.goto(0,0)\n\tt.pendown()\n\tt.forward(100)","Test pen and colours")
     Test1.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
     Test1.test("t.clear()","Clear the canvas")
-    end = time.perf_counter()
+    end = ducky.get_time()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test1.results()
 
 
     ducky.wait(20)
     #turtle functions test
-    start = time.perf_counter()
+    start = ducky.get_time()
     Test2 = Tester()
 
     Test2.test("ducky.splat(t,3)","Run custom splat function")
@@ -86,13 +86,13 @@ if __name__ == "__main__":
     Test2.test("ducky.target_board(t)","Run custom star function")
     ducky.wait(20)
     Test2.test("ducky.bye()","Close turtle")
-    end = time.perf_counter()
+    end = ducky.get_time()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test2.results()
 
     ducky.wait(20)
     #matrix manager test
-    start = time.perf_counter()
+    start = ducky.get_time()
     Test3 = Tester()
 
     Test3.test("background = ducky.matrix(3,3)","Make a 3 x 3 matrix")
@@ -106,22 +106,32 @@ if __name__ == "__main__":
     Test3.test("Matrix.x_pos+=1","Reset the line's position")
     Test3.test("Matrix.y_pos+=1","Move the line vertically in the matrix")
     Test3.test("Matrix.y_pos-=2","Move the line vertically in the matrix")
-    end = time.perf_counter()
+    end = ducky.get_time()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test3.results()
 
     #chatbot test
     ducky.wait(20)
-    start = time.perf_counter()
+    start = ducky.get_time()
     Test4 = Tester()
 
     Test4.test("inputs = ['hello there','bye']","Create inputs list")
     Test4.test("outputs = ['Hello','Bye then']","Create outputs list")
     Test4.test("chat=ducky.Chatbot(inputs,outputs)","Initialise a chatbot object")
     Test4.test("5/(chat.reply_test())","Test outputs")
-    end = time.perf_counter()
+    end = ducky.get_time()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test4.results()
+
+    ducky.wait(20)
+    start = ducky.get_time()
+    Test5 = Tester()
+
+    Test5.test("nn = NeuralNetwork()","Create inputs list")
+    end = ducky.get_time()
+    print(f"\033[35mCompleted in {end-start} seconds")
+    Test5.results()
+
     #TODO add more tests for individual functions
     full_timer.stop()
     print(f"\033[35mCompleted all tests in {full_timer.elapsed()} seconds")
