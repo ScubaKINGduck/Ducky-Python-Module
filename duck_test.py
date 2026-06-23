@@ -130,6 +130,8 @@ if __name__ == "__main__":
     Test5.test("nn = ducky.NeuralNetwork(*ducky.CostFunctions.use_mse())","Initialise a NeuralNetwork object")
     Test5.test("nn.add_layer(ducky.FullyConnectedLayer(10,10))","Add a Fully connected layer")
     Test5.test("nn.add_layer(ducky.ActivationLayer(*ducky.ActivationFunctions.use_tanh()))","Add a tanh activation layer")
+    Test5.test("nn.add_layer(ducky.FullyConnectedLayer(2,1))", "Add an output Fully connected layer")
+    Test5.test("nn.predict(1)","Test the network prediction")
     end = ducky.get_time()
     print(f"\033[35mCompleted in {end-start} seconds")
     Test5.results()
