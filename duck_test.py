@@ -45,7 +45,7 @@ if __name__ == "__main__":
     full_timer = IndependentTimer()
     full_timer.start()
     #basic turtle and Turtle Manager test
-    start = time.perf_counter()
+    start = ducky.get_time()
     Test1 = Tester()
 
     Test1.test("import ducky","Import ducky")
