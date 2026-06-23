@@ -107,7 +107,7 @@ def choose(list_input):
     return random.choice(list_input)
 
 def wait(ms):
-    time.sleep(ms)
+    time.sleep(ms/1000)
     
 def current_hour():
     return time.localtime()[3]
