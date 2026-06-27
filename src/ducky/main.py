@@ -235,7 +235,8 @@ class Tester:
             print(f"\033[32mCode:\n{code}\n({name}) executed successfully\n")
 
         except Exception as error:
-            print(f"\033[31m{error}\n")
+            print(f"\033[31m{error}")
+            print(f"\033[31m{code}\n")
             self.errors.append(f"Line:  {len(self.errors)+len(self.success)+1}   {error}")
 
     def results(self):
