@@ -253,7 +253,7 @@ class Tester:
             print("\033[91m------------------------------------------------------------")
             print(f"\033[91mCompleted {percent}% successfully:\n")
         if self.success:
-            print(f"\033[32mSuccessful tests:\n")
+            print(f"\033[32mSuccessful tests:")
         for s in self.success:
             print(f"\033[32m{s}")
         if len(self.errors) > 0:
