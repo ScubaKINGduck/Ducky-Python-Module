@@ -213,6 +213,14 @@ class Tester:
         if total_tests == 0:
             return 0
         return (total_success / total_tests) * 100
+
+    @classmethod
+    def fails(cls):
+        errors = []
+        for instance in cls._instances:
+            errors.append(instance.errors)
+            return errors
+        
     def __init__(self):
         self.errors = []
         self.success = []
