@@ -219,8 +219,8 @@ class Tester:
         errors = []
         for instance in cls._instances:
             errors.append(instance.errors)
-            return errors
-        
+            return errors if len(errors) > 0 else None
+
     def __init__(self):
         self.errors = []
         self.success = []
