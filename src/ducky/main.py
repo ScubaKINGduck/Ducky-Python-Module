@@ -257,7 +257,7 @@ class Tester:
         for s in self.success:
             print(f"\033[32m{s}")
         if len(self.errors) > 0:
-            print(f"\n\033[31mFailed tests:\n")
+            print(f"\n\033[31mFailed tests:")
         for e in self.errors:
             print(f"\033[31m{e}")
 
