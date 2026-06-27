@@ -226,6 +226,7 @@ class Tester:
         self.success = []
         Tester._instances.append(self)
         print("\033[0m")
+        
     def test(self,code, name="Unnamed"):
         try:
             exec(code, globals())
