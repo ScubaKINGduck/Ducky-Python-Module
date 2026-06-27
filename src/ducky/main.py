@@ -222,6 +222,7 @@ class Tester:
             return errors if len(errors) > 0 else None
 
     def __init__(self):
+        self.instance_val = len(self._instances) + 1
         self.errors = []
         self.success = []
         Tester._instances.append(self)
