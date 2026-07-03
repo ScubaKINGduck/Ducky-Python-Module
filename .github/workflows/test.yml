@@ -22,4 +22,4 @@ jobs:
           fi
 
       - name: Run tests
-        run: duck_test.py
+        run: python duck_test.py
