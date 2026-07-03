@@ -153,7 +153,7 @@ if __name__ == "__main__":
     if average < 100:
         print("\033[31mFailed tests:")
         for instance in Tester._instances:
-            if instance.errors != []:
+            if instance.errors:
                 print(f"Test{instance.instance_val}")
                 errors = "\n".join(instance.errors)
                 print(f"\033[31m{errors}\n")
