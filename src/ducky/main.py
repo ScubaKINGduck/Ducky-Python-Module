@@ -783,6 +783,48 @@ class Memory:
         self.rewards = []
 
 
+#Customisable gymnasium env
+class DuckEnv(gym.Env, abc.ABC):
+    def __init__(self, state_shape, num_actions):
+        """initialises a gymnasium environment"""
+        super().__init__() #gymnasium init
+        self.action_space = spaces.Discrete(num_actions) #num of actions
+        self.observation_space = spaces.Box(low=-numpy.inf, high=numpy.inf, shape=state_shape, dtype=numpy.float32) #state space
+
+    def step(self, action):
+        """gymnasium step function that uses user-defined functions"""
+        next_state = self.on_action(action) #gets next state
+        self.state = numpy.array(next_state, dtype=numpy.float32) #converts it into numpy arrray
+        reward = self.get_reward() #gets user function for get_reward
+        terminated = self.is_game_over() #checks for game_over
+        truncated = False #to stop infinite loop in training by truncating training
+        return self.state, reward, terminated, truncated, {} #returns gymnasium compatible format
+
+    def reset(self, seed=None, options=None):
+        """reset function"""
+        super().reset(seed=seed)
+        return self.on_reset(), {}
+
+    @abc.abstractmethod
+    def on_action(self, action):
+        """user-defined function"""
+        return self.state
+
+    @abc.abstractmethod
+    def get_reward(self):
+        """user-defined function"""
+        return 0
+
+    @abc.abstractmethod
+    def on_reset(self):
+        """user-defined function"""
+        return self.state
+
+    @abc.abstractmethod
+    def is_game_over(self):
+        """user-defined function"""
+        return False
+
 #turtlel
       
 def dots(turt_name, number, random_colours=True, colours=None, minimum=20, maximum=100):
