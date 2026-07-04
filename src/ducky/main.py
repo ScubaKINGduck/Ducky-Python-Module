@@ -13,7 +13,8 @@ def matrix(x,y,fill=0):
     mat = [[fill for _ in range(x)] for _ in range(y)]
     return mat
 
-def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified positions
+def draw(mat,x,y,val=1,errors=True):
+    """draws a certain value to all specified positions"""
     if len(x) == len(y):
         try:
             for i,x_pos in enumerate(x):
@@ -25,7 +26,8 @@ def draw(mat,x,y,val=1,errors=True): #draws a certain value to all specified pos
         print(f"Lengths aren't equal: Mat Rows: {len(mat)}, X: {len(x)}, Y: {len(y)}")
     return mat
 
-def scan(mat,condition=1): #returns all locations that meet a certain condition
+def scan(mat,condition=1):
+    """returns all locations that meet a certain condition"""
     x = []
     y = []
     for y_index,Y in enumerate(mat):
@@ -36,6 +38,7 @@ def scan(mat,condition=1): #returns all locations that meet a certain condition
     return x,y
 
 def shift(mat,x,y,x_shift,y_shift=0):
+    """shifts a matrix by a certain x and y distance"""
     y_size = len(mat)
     x_size = len(mat[0])
     
@@ -53,7 +56,8 @@ def shift(mat,x,y,x_shift,y_shift=0):
                 
     return new_x, new_y
 
-def move(mat,x_move,y_move=0,condition_scan=1,blank_clear=0): #uses shift function to move an image stored in a matrix
+def move(mat,x_move,y_move=0,condition_scan=1,blank_clear=0):
+    """uses shift function to move an image stored in a matrix"""
     x, y = scan(mat,condition=condition_scan)
     new_x, new_y = shift(mat, x, y, x_shift=x_move, y_shift=y_move)
     mat = clear_matrix(mat,blank=blank_clear)
@@ -61,12 +65,14 @@ def move(mat,x_move,y_move=0,condition_scan=1,blank_clear=0): #uses shift functi
     return mat
 
 def clear_matrix(mat,blank=0):
+    """clears a matrix using a custom blank value"""
     for Y in range(len(mat)):
         for X in range(len(mat[Y])):
             mat[Y][X] = blank
     return mat
 
 def render(mat):
+    """renders a matrix to console"""
     for row in mat:
         print(" ".join(str(cell) for cell in row))
     print("------------------------------------------------------")
@@ -74,21 +80,22 @@ def render(mat):
 #my functions
 
 def download_nltk():
+    """downloads nltk resources"""
     nltk.download('punkt', quiet=True)
 
 def download_to_path(url, path, file_name, quiet=False):
+    """downloads a file"""
     try:
         r = requests.get(url)
         r.raise_for_status()
-
         with open(f"{path}/{file_name}", "wb") as f:
             f.write(r.content)
-
     except requests.exceptions.RequestException as e:
         if not quiet:
             print("Download failed:", e)
 
 def low_ram_download(url,path,file_name,quiet=False):
+    """downloads a file using less ram"""
     try:
         with requests.get(url, stream=True) as r:
             r.raise_for_status()
@@ -101,51 +108,65 @@ def low_ram_download(url,path,file_name,quiet=False):
             print("Download failed:", e)
 
 def rand_int(minimum,maximum):
+    """returns a random integer within certain bounds"""
     return random.randint(minimum,maximum)
 
 def choose(list_input):
+    """chooses a random item from a list"""
     return random.choice(list_input)
 
 def wait(ms):
+    """waits a certain amount of time in milliseconds"""
     time.sleep(ms/1000)
     
 def current_hour():
+    """returns the current hour"""
     return time.localtime()[3]
 
 def current_minute():
+    """returns the current minute"""
     return time.localtime()[4]
 
 def current_second():
+    """returns the current second"""
     return time.localtime()[5]
     
 def tokenise(string):
+    """tokenises a word"""
     tokens = word_tokenize(string)
     return tokens
 
 def stem(string):
+    """returns the stem of a word"""
     lancaster = LancasterStemmer()
     return lancaster.stem(string)
     
 def array(lst):
+    """returns an array of a list"""
     return backend().array(lst)
 
 def dot_product(mat1,mat2):
+    """returns the dot product of two values"""
     return backend().dot(mat1,mat2)
 
-def scale_matrices(mat,val):
+def scale_matrix(mat,val):
+    """scales a matrix by a certain value"""
     return mat*val
 
-def average_matrices(mat):
+def average_matrix(mat):
+    """averages a matrix"""
     return backend().average(mat)
 
 def calc(param):
+    """calculates a mathematical expression"""
     try:
         return ast.literal_eval(param)
     except (ValueError,SyntaxError) as e:
         logging.error(f"Error evaluating expression: {e}")
         return e
 
-def find_total(number,condition=None): #adds all numbers below it that meet a certain condition
+def find_total(number,condition=None):
+    """adds all numbers below it that meet a certain condition"""
     if number < 1:
         return 0
     total = 0
@@ -155,12 +176,15 @@ def find_total(number,condition=None): #adds all numbers below it that meet a ce
     return total
     
 def ask_url(url):
+    """sends a get request to a url"""
     return requests.get(url)
 
 def ask_json(url):
+    """sends a get request to a url and returns it in json format"""
     return requests.get(url).json()
 
 def get_coords():
+    """gets the coordinates of the user using ip"""
     response = requests.get("https://ipinfo.io/json", timeout=5)
     response.raise_for_status()
     data = response.json()
@@ -171,11 +195,13 @@ def get_coords():
     return None
 
 def get_time():
+    """returns a time.perf_counter object"""
     return time.perf_counter()
 
 #my decorators
 
 def time_function(func):
+    """times the execution time of a function"""
     def wrapper(*args, **kwargs):
         start = get_time()
         result = func(*args, **kwargs)
@@ -185,6 +211,7 @@ def time_function(func):
     return wrapper
 
 def repeat(times):
+    """repeats a function a certain number of times"""
     def decorator(func):
         def wrapper(*args, **kwargs):
             results = []
@@ -196,6 +223,7 @@ def repeat(times):
     return decorator
 
 def modify(func,modifier):
+    """modifies a function"""
     return modifier(func())
 
 #classes
