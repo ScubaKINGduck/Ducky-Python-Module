@@ -1,4 +1,4 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, ast, logging, abc
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, ast, logging, abc, gymnasium
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
@@ -786,7 +786,7 @@ class Memory:
 
 
 #Customisable gymnasium env
-class DuckEnv(gym.Env, abc.ABC):
+class DuckEnv(gymnasium.Env, abc.ABC):
     def __init__(self, state_shape, num_actions):
         """initialises a gymnasium environment"""
         super().__init__() #gymnasium init
