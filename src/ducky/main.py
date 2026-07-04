@@ -501,7 +501,6 @@ class Chatbot:
 
 #AI class templates
 
-
 import abc
 import random
 
@@ -748,36 +747,39 @@ class DeepQAgent(Agent):
     def train(self, discount_rate):
         training_input_data = []
         training_output_data = []
-        for i in range(len(self.memory.states)):
-            prediction = self.neural_network.predict(self.memory.states[i])
-            prediction[0] += self.memory.rewards[i - 1]
+        for i in range(len(self.memory.states)): #loops through a range the len of all states stored in Memory
+            prediction = self.neural_network.predict(self.memory.states[i]) #makes a prediction on the current memory state being iterated over with the current neural network
+            prediction[0] += self.memory.rewards[i - 1] #prediction is edited based on the reward from what the agent did in that state
             if i > 0:
-                prediction[0] += self.memory.rewards[i-1] * discount_rate
+                prediction[0] += self.memory.rewards[i-1] * discount_rate #updates prediction based on previous rewards
         training_input_data = numpy.array(training_input_data)
         training_output_data = numpy.array(training_output_data)
-        self.neural_network.train(training_input_data, training_output_data, n_epochs=500, batch_size=10, learning_rate=0.1)
+        self.neural_network.train(training_input_data, training_output_data, n_epochs=500, batch_size=10, learning_rate=0.1) #trains the neural network
         if self.counter >= 10:
-            self.neural_network.save("deepq-nn")
+            self.neural_network.save("deepq-nn") #saves neural network as deepq-nn
             self.counter = 0
         else:
             self.counter += 1
 
     def update_memory(self, state, action, reward):
-        self.memory.update(state, action, reward)
+        self.memory.update(state, action, reward) #appends a state, action and reward to the Memory instance variable's instance variables
 
 
 class Memory:
     def __init__(self):
+        """initialises a Memory object"""
         self.states = []
         self.actions = []
         self.rewards = []
 
     def update(self, state, action, reward):
+        """appends a state, action and reward to instance variables"""
         self.states.append(state)
         self.actions.append(action)
         self.rewards.append(reward)
 
     def clear(self):
+        """clears the instance variable lists of states, actions and rewards."""
         self.states = []
         self.actions = []
         self.rewards = []
