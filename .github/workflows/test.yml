@@ -17,9 +17,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
+          python -m pip install --upgrade pip
+          pip install "nltk>=3.8.0" "requests>=2.30.0" "numpy>=1.26.0"
 
       - name: Run tests
         run: python duck_test.py
