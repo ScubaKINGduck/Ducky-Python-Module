@@ -1,12 +1,10 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+
 *.so
 
-# Distribution / packaging
 .Python
 env/
 venv/
@@ -30,15 +28,12 @@ wheels/
 *.egg
 MANIFEST
 
-# PyInstaller
 *.manifest
 *.spec
 
-# Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
 htmlcov/
 .tox/
 .nox/
@@ -51,23 +46,18 @@ coverage.xml
 *.py,cover
 .hypothesis/
 
-# Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
-# PyCharm
 .idea/
 *.iml
 *.iws
 
-# VS Code
 .vscode/
 
-# mypy
 .mypy_cache/
 .dmypy.json
 dmypy.json
 
-# virtualenv
 .env/
 .venv/
 
@@ -76,3 +66,4 @@ test.py
 /tests.ipynb
 tests.py
 /test.ipynb
+new_integration.py
