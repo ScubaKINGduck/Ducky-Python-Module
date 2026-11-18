@@ -1,4 +1,4 @@
-import ducky, time
+import ducky, time, turtle
 from ducky import Tester
 class IndependentTimer:
     def __init__(self):
@@ -35,7 +35,7 @@ def print_average():
     print(f"{color}Average success across all Tester instances: {avg:.2f}%\033[0m")
 
 def hide_turtle_window():
-    screen = ducky.Screen()
+    screen = turtle.Screen()
     screen.tracer(0, 0)
     canvas = screen.getcanvas()
     root = canvas.winfo_toplevel()
@@ -49,6 +49,7 @@ if __name__ == "__main__":
     Test1 = Tester()
 
     Test1.test("import ducky","Import ducky")
+    Test1.test("import turtle","Import turtle")
 
     hide_turtle_window()
     Test1.test("t=ducky.Turtle()","Create turtle")
@@ -64,31 +65,7 @@ if __name__ == "__main__":
 
 
     ducky.wait(20)
-    #turtle functions test
-    start = ducky.get_time()
-    Test2 = Tester()
-
-    Test2.test("ducky.splat(t,3)","Run custom splat function")
-    Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
-    Test2.test("t.clear()","Clear the canvas")
-    Test2.test("ducky.pizza(t,size=10,x=0,y=0)","Run custom pizza function")
-    ducky.wait(20)
-    Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
-    Test2.test("t.clear()","Clear the canvas")
-    Test2.test("ducky.star(t)","Run custom star function")
-    ducky.wait(20)
-    Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
-    Test2.test("t.clear()","Clear the canvas")
-    Test2.test("ducky.dots(t,5)","Run custom star function")
-    ducky.wait(20)
-    Test2.test("t.home()\nduck.colour('black')\nt.pendown()","Reset the turtle")
-    Test2.test("t.clear()","Clear the canvas")
-    Test2.test("ducky.target_board(t)","Run custom star function")
-    ducky.wait(20)
-    Test2.test("ducky.bye()","Close turtle")
-    end = ducky.get_time()
-    print(f"\033[35mCompleted in {end-start} seconds")
-    Test2.results()
+    #turtle functions test removed alongside turtle
 
     ducky.wait(20)
     #matrix manager test
