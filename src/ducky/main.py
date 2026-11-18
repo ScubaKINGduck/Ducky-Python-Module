@@ -157,14 +157,6 @@ def average_matrix(mat):
     """averages a matrix"""
     return backend().average(mat)
 
-def calc(param):
-    """calculates a mathematical expression"""
-    try:
-        return ast.literal_eval(param)
-    except (ValueError,SyntaxError) as e:
-        logging.error(f"Error evaluating expression: {e}")
-        return e
-
 def find_total(number,condition=None):
     """adds all numbers below it that meet a certain condition"""
     if number < 1:
