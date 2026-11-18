@@ -346,7 +346,7 @@ class MatrixManager:
         wait(1000/self.fps)
 
 
-class Manage:
+class FileManager:
     def __init__(self, file, action):
         self.file = file
         self.action = action
