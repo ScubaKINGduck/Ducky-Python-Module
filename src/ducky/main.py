@@ -9,11 +9,11 @@ from nltk.stem import LancasterStemmer
 
 #matrix functions
 
-def matrix(x,y,fill=0):
+def matrix(x, y, fill=0):
     mat = [[fill for _ in range(x)] for _ in range(y)]
     return mat
 
-def draw(mat,x,y,val=1,errors=True):
+def draw(mat, x, y, val=1, errors=True):
     """draws a certain value to all specified positions"""
     if len(x) == len(y):
         try:
@@ -26,7 +26,7 @@ def draw(mat,x,y,val=1,errors=True):
         print(f"Lengths aren't equal: Mat Rows: {len(mat)}, X: {len(x)}, Y: {len(y)}")
     return mat
 
-def scan(mat,condition=1):
+def scan(mat, condition=1):
     """returns all locations that meet a certain condition"""
     x = []
     y = []
@@ -37,7 +37,7 @@ def scan(mat,condition=1):
                 y.append(y_index)
     return x,y
 
-def shift(mat,x,y,x_shift,y_shift=0):
+def shift(mat, x, y, x_shift, y_shift=0):
     """shifts a matrix by a certain x and y distance"""
     y_size = len(mat)
     x_size = len(mat[0])
@@ -56,7 +56,7 @@ def shift(mat,x,y,x_shift,y_shift=0):
                 
     return new_x, new_y
 
-def move(mat,x_move,y_move=0,condition_scan=1,blank_clear=0):
+def move(mat, x_move, y_move=0, condition_scan=1, blank_clear=0):
     """uses shift function to move an image stored in a matrix"""
     x, y = scan(mat,condition=condition_scan)
     new_x, new_y = shift(mat, x, y, x_shift=x_move, y_shift=y_move)
@@ -64,7 +64,7 @@ def move(mat,x_move,y_move=0,condition_scan=1,blank_clear=0):
     mat = draw(mat, new_x, new_y,val=condition_scan)
     return mat
 
-def clear_matrix(mat,blank=0):
+def clear_matrix(mat, blank=0):
     """clears a matrix using a custom blank value"""
     for Y in range(len(mat)):
         for X in range(len(mat[Y])):
@@ -94,7 +94,7 @@ def download_to_path(url, path, file_name, quiet=False):
         if not quiet:
             print("Download failed:", e)
 
-def low_ram_download(url,path,file_name,quiet=False):
+def low_ram_download(url, path, file_name, quiet=False):
     """downloads a file using less ram"""
     try:
         with requests.get(url, stream=True) as r:
@@ -107,9 +107,9 @@ def low_ram_download(url,path,file_name,quiet=False):
         if not quiet:
             print("Download failed:", e)
 
-def rand_int(minimum,maximum):
+def rand_int(minimum, maximum):
     """returns a random integer within certain bounds"""
-    return random.randint(minimum,maximum)
+    return random.randint(minimum, maximum)
 
 def choose(list_input):
     """chooses a random item from a list"""
@@ -145,19 +145,19 @@ def array(lst):
     """returns an array of a list"""
     return backend().array(lst)
 
-def dot_product(mat1,mat2):
+def dot_product(mat1, mat2):
     """returns the dot product of two values"""
     return backend().dot(mat1,mat2)
 
-def scale_matrix(mat,val):
+def scale_matrix(mat, val):
     """scales a matrix by a certain value"""
-    return mat*val
+    return backend().asarray(mat)*val
 
 def average_matrix(mat):
     """averages a matrix"""
     return backend().average(mat)
 
-def find_total(number,condition=None):
+def find_total(number, condition=None):
     """adds all numbers below it that meet a certain condition"""
     if number < 1:
         return 0
@@ -214,7 +214,7 @@ def repeat(times):
         return wrapper
     return decorator
 
-def modify(func,modifier):
+def modify(func, modifier):
     """modifies a function"""
     return modifier(func())
 
@@ -239,7 +239,7 @@ class Tester:
         errors = []
         for instance in cls._instances:
             errors.append(instance.errors)
-            return errors if len(errors) > 0 else None
+        return errors if len(errors) > 0 else None
 
     def __init__(self):
         self.instance_val = len(self._instances) + 1
@@ -248,7 +248,7 @@ class Tester:
         Tester._instances.append(self)
         print("\033[0m")
 
-    def test(self,code, name="Unnamed"):
+    def test(self, code, name="Unnamed"):
         try:
             exec(code, globals())
             self.success.append(name)
@@ -294,7 +294,7 @@ class Tester:
 
 
 class MatrixManager:
-    def __init__(self,background,fps,mat=None,wrapping=False,sprite_condition=1):
+    def __init__(self, background, fps, mat=None, wrapping=False, sprite_condition=1):
         self.mat = mat
         self.fps = fps
         self.x = None
@@ -305,22 +305,22 @@ class MatrixManager:
         self.scan_mat()
         self.x_pos = 0
         self.y_pos = 0
-    def make_matrix(self,x,y,value=0):
-        self.mat = matrix(x,y,value)
+    def make_matrix(self, x, y, value=0):
+        self.mat = matrix(x, y, value)
         
     def scan_mat(self):
         if self.mat:
             self.x,self.y = scan(self.mat,self.sprite_condition)
             
-    def modify_matrix(self,x,y,val):
+    def modify_matrix(self, x, y, val):
         self.mat[y][x] = val
         
-    def self_render(self,t_x,t_y,printing=True,sprite_cond=1):
-        draw(self.background,t_x,t_y,val=sprite_cond)
+    def self_render(self, t_x, t_y, printing=True, sprite_cond=1):
+        draw(self.background, t_x, t_y, val=sprite_cond)
         if printing:
             render(self.background)
             
-    def loop_func(self,rendering=True,clearing=True):
+    def loop_func(self, rendering=True, clearing=True):
         temp_x = [x for x in self.x]
         temp_y = [y for y in self.y]
         if clearing:
@@ -334,7 +334,7 @@ class MatrixManager:
                 temp_x[i] = temp_x[i] % len(self.background[0]) #wrap horizontally
             for i in range(len(temp_y)):
                 temp_y[i] = temp_y[i] % len(self.background) #wrap vertically
-        self.self_render(temp_x,temp_y,printing=rendering,sprite_cond=self.sprite_condition)
+        self.self_render(temp_x, temp_y, printing=rendering, sprite_cond=self.sprite_condition)
         wait(1000/self.fps)
 
 
@@ -362,7 +362,7 @@ class FileManager:
 
     def append_to_file(self):
         try:
-            with open(self.file,"a") as file:
+            with open(self.file, "a") as file:
                 file.write(input(f"What do you want to append to the file?\n"))
         except Exception as e:
             logging.error(f"Failed to append to {self.file}: {e}")
@@ -373,7 +373,7 @@ class FileManager:
             os.remove(self.file)
     def read_from_file(self):
         try:
-            with open(self.file,"r") as file:
+            with open(self.file, "r") as file:
                 return file.read()
         except Exception as e:
             logging.error(f"Failed to read from {self.file}: {e}")
@@ -381,10 +381,10 @@ class FileManager:
 
 
 class TurtleManager:
-    def __init__(self,turtle,colours=None):
+    def __init__(self, turtle, colours=None):
         self.turtle = turtle
         self.x = self.turtle.xcor()
-        self.y = self.turtle.xcor()
+        self.y = self.turtle.ycor()
         self.width = self.turtle.width()
         self.pen_down = self.turtle.isdown()
         self.rotation = self.turtle.heading()
@@ -392,8 +392,8 @@ class TurtleManager:
         if not self.colours:
             self.colours = ["red","green","blue","yellow","white","black","green","purple"]
 
-    def colour(self,name=None,index=None):
-        if index:
+    def colour(self, name=None, index=None):
+        if index is not None:
             self.turtle.pencolor(self.colours[index])
         else:
             self.turtle.pencolor(name)
@@ -402,10 +402,10 @@ class TurtleManager:
         self.width = self.turtle.width()
         self.rotation = self.turtle.heading()
         self.x = self.turtle.xcor()
-        self.y = self.turtle.xcor()
+        self.y = self.turtle.ycor()
         self.pen_down = self.turtle.isdown()
 
-    def change(self,x=False,y=False,rotation=False,rotation_val=None,width=False,width_val=None,pen_state=False):
+    def change(self, x=False, y=False, rotation=False, rotation_val=None, width=False, width_val=None, pen_state=False):
         if x and y:
             if self.pen_down:
                 self.turtle.penup()
@@ -428,7 +428,7 @@ class TurtleManager:
 #unfinished chatbot
             
 class Chatbot:
-    def __init__(self,testing_input=None,testing_output=None):
+    def __init__(self, testing_input=None, testing_output=None):
         self.greetings = None
         self.farewells = None
         self.time = None
@@ -440,20 +440,20 @@ class Chatbot:
         self.build()
 
     def build(self):
-        self.greetings = ["hi","hello","meet","morn","afternoon","hey"]
-        self.farewells = ["bye","see","lat","goodby"]
-        self.time = ["tim","now","clock"]
-        self.help = ["assist","help","nee"]
-        self.location = ["wher","loc"]
+        self.greetings = ["hi", "hello", "meet", "morn", "afternoon", "hey"]
+        self.farewells = ["bye" ,"see", "lat", "goodby"]
+        self.time = ["tim" ,"now", "clock"]
+        self.help = ["assist", "help", "nee"]
+        self.location = ["wher", "loc"]
 
     def run(self):
         self.user_input = ""
-        score = [0,0,0,0,0]
+        score = [0, 0, 0, 0, 0]
         while self.user_input != "exit":
             self.user_input = input("You:\t")
             print(self.reply(self.user_input))
 
-    def reply(self,reply_input):
+    def reply(self, reply_input):
         score = [0, 0, 0, 0, 0]
         tokens = tokenise(reply_input)
         stemmed_words = []
@@ -721,12 +721,12 @@ class QTableAgent(Agent):
 
 
 class DeepQAgent(Agent):
-    def __init__(self, layer_sizes):
+    def __init__(self, layer_sizes, file_name="deepq-nn"):
         Agent.__init__(self)
         self.memory = Memory()
         self.counter = 0
         try:
-            self.neural_network = NeuralNetwork.load_from_file("deepq-nn")
+            self.neural_network = NeuralNetwork.load_from_file(file_name)
         except FileNotFoundError:
             self.neural_network = NeuralNetwork(*CostFunctions.use_mse())
             for i, size in enumerate(layer_sizes[:-1]):
@@ -782,8 +782,8 @@ class DuckEnv(gymnasium.Env, abc.ABC):
     def __init__(self, state_shape, num_actions):
         """initialises a gymnasium environment"""
         super().__init__() #gymnasium init
-        self.action_space = spaces.Discrete(num_actions) #num of actions
-        self.observation_space = spaces.Box(low=-numpy.inf, high=numpy.inf, shape=state_shape, dtype=numpy.float32) #state space
+        self.action_space = gymnasium.spaces.Discrete(num_actions) #num of actions
+        self.observation_space = gymnasium.spaces.Box(low=-numpy.inf, high=numpy.inf, shape=state_shape, dtype=numpy.float32) #state space
 
     def step(self, action):
         """gymnasium step function that uses user-defined functions"""
