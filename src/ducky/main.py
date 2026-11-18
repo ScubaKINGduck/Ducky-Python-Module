@@ -1,4 +1,4 @@
-import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, ast, logging, abc, gymnasium
+import random, time, os, nltk, tkinter as TK, types, math, inspect, sys, requests, json, ast, logging, abc, gymnasium, threading
 from os.path import isfile, split, join
 from copy import deepcopy
 from tkinter import simpledialog
@@ -826,6 +826,53 @@ class DuckEnv(gymnasium.Env, abc.ABC):
     def is_game_over(self):
         """user-defined function"""
         return False
+
+
+class InputManager: #As original as any name
+    """A simple class for managing inputs (e.g. for game engines)"""
+    def __init__(self):#
+        self.pressed_keys = set()
+        self.keys_pressed_this_frame = set()
+        self.lock = threading.Lock()
+        self.hook = keyboard.hook(self._read_keys) #hooks keyboard events to _read_keys
+
+    def _read_keys(self, event):
+        with self.lock:
+            if event.event_type == keyboard.KEY_UP:
+                self.pressed_keys.discard(event.name.lower())
+            elif event.event_type == keyboard.KEY_DOWN:
+                if event.name.lower() not in self.pressed_keys:
+                    self.pressed_keys.add(event.name.lower())
+                    self.keys_pressed_this_frame.add(event.name.lower())
+
+    def is_pressed(self, key):
+        with self.lock:
+            return key.lower() in self.pressed_keys
+
+    def get_pressed(self):
+        with self.lock:
+            return self.pressed_keys.copy()
+
+    def are_pressed(self, *keys):
+        with self.lock:
+            return all(key.lower() in self.pressed_keys for key in keys)
+
+    def any_pressed(self, *keys):
+        with self.lock:
+            return any(key.lower() in self.pressed_keys for key in keys)
+
+    def pressed_this_frame(self, *keys):
+        with self.lock:
+            return all(key.lower() in self.keys_pressed_this_frame for key in keys)
+
+    def next_frame(self):
+        """Clears the keys_pressed_this_frame set (e.g. run this at the start of an update in a game engine)"""
+        with self.lock:
+            self.keys_pressed_this_frame.clear()
+
+    def close(self):
+        """Unhooks the _read_keys function"""
+        keyboard.unhook(self.hook)
 
 #turtlel functions moved out of this module
 #turtle also removed since it wasn't really doing much
