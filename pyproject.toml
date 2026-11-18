@@ -19,7 +19,8 @@ dependencies = [
     "nltk>=3.8.0",  
     "requests>=2.30.0",
     "numpy>=1.26.0",
-    "gymnasium>=0.29.0"
+    "gymnasium>=0.29.0",
+    "keyboard>=0.13.5"
 ]
 
 [tool.setuptools.packages.find]
